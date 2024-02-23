@@ -1,6 +1,7 @@
 import React, { useEffect,useRef } from 'react';
 import { getProducts } from "../../redux/productsReducer"
-import { addItemToCart , deleteItemFromCart } from '../../redux/cartReducer';
+import { addItemToCart , deleteItemFromCart} from '../../redux/cartReducer';
+import { changeSize} from '../../redux/catalogReducer';
 import { useParams} from 'react-router-dom';
 import { compose } from 'redux';
 import Details from './ProductDetails';
@@ -12,7 +13,7 @@ const DetailsContainer = (props) => {
 
     
     return(
-       <Details deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
+       <Details changeSize = {props.changeSize} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
     )
 }
 
@@ -24,7 +25,7 @@ let mapStateToProps = (state) => {
   }
 
 export default compose(
-    connect(mapStateToProps , {getProducts , addItemToCart , deleteItemFromCart}),
+    connect(mapStateToProps , {getProducts , addItemToCart , deleteItemFromCart , changeSize}),
   )(DetailsContainer);  
 
 

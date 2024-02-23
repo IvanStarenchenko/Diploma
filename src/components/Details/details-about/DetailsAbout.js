@@ -3,13 +3,12 @@ import { useState } from 'react';
 
 const DetailsAbout = (props) => {
   const [isAdded , setIsAdded] = useState(false)
-
+  const [isActive , setIsActive] = useState(true)
   const { id } = useParams();
   const selectedItem = props.product.find((item) => item.id === parseInt(id));
-    console.log(selectedItem.id)
-  if (!selectedItem) {
-    return <div>Товар не найден</div>;
-  }
+    if (!selectedItem) {
+        return <div>Товар не найден</div>;
+    }
    const setItemToCart = (selectedItem) => { 
         props.addItemToCart(selectedItem)
         setIsAdded(true)
@@ -18,6 +17,11 @@ const DetailsAbout = (props) => {
     const delFromCart = (selectedItem) => {
         props.deleteItemFromCart(selectedItem.id)
         setIsAdded(false)
+    }
+    console.log(selectedItem)
+    const handleSizeChange = (newSize , newPrice) => {
+        props.changeSize(selectedItem.id , newSize , newPrice )
+        // props.changePrice(selectedItem.id , newPrice )
     }
 
   return(
@@ -73,11 +77,11 @@ const DetailsAbout = (props) => {
                 <div className="size-product__guide">Size Guide</div> 
                 </div>
                 <div className="size-product__sizes">
-                    <div id="xs">XS</div>
-                    <div id="s">S</div>
-                    <div id="m">M</div>
-                    <div id="l">L</div>
-                    <div id="xl">XL</div>
+                    <div  onClick={() => handleSizeChange('XS' , selectedItem.itemPrice)} id="xs">XS</div>
+                    <div  onClick={() => handleSizeChange('S', selectedItem.itemPrice + 25)} id="s">S</div>
+                    <div  onClick={() => handleSizeChange('M', selectedItem.itemPrice + 35)}id="m">M</div>
+                    <div  onClick={() => handleSizeChange('L', selectedItem.itemPrice + 45)}id="l">L</div>
+                    <div  onClick={() => handleSizeChange('XS', selectedItem.itemPrice + 55)}id="xl">XL</div>
                 </div>
             </div>
             <div className="about-product__colours colours-product">
@@ -102,7 +106,7 @@ const DetailsAbout = (props) => {
                     }
                 </button>
                 <div className="buttons-product__price">
-                    <span id="xsPrice">{selectedItem && selectedItem.itemPriceXS}</span>
+                    <span id="xsPrice">{selectedItem && selectedItem.itemPrice}</span>
                 </div>
             </div>
             <div className="about-product__advantages advantages-product">
