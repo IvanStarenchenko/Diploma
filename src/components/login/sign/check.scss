@@ -1,0 +1,39 @@
+@import '../../../App.scss';
+@import '../sign/sign-up.scss';
+
+.check {
+    color: #807D7E;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate( -20% , -10%);
+    &__text {
+        span{
+            color: #8A33FD;
+            font-weight: 600;
+        }
+    }
+
+    &__login {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: normal;
+        position: relative;
+        padding-left: 20px;
+        color: #807D7E;
+        &:hover{
+            &::before{
+                left: 5px;
+            }
+        }
+        &::before{
+            content: "<";
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: left 0.3s ease 0s;
+        }
+    }
+}
+

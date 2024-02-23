@@ -1,0 +1,187 @@
+@import '../../App.scss';
+
+
+
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #BEBCBD;
+    &.fixed {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 2;
+    }
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 108px;
+   
+}
+.active{
+    font-size: 24;
+}
+.header-active{
+    color:red
+}
+// ========================== [ Menu styles ] ==========================
+.menu {
+    display: flex;
+    column-gap: 40px;
+    // .menu__item
+    &__item {
+        display: flex;
+        position: relative;
+        font-size: 18px;
+        line-height: normal;
+        color: #807D7E;
+       
+    }
+
+    // .menu__item-link
+    &__item-link {
+        position: relative;
+        transition: all 0.3s ease 0s ;
+        &:not(:first-child){
+            padding-left: 40px;
+        }
+        &:hover {
+            color: #000;
+            text-shadow: 0 0 .15px #000, 0 0 .15px #000;
+        }
+    }
+
+    // Mobile menu styles
+    @media screen and (max-width: $burgerBreakpoint) {
+        position: fixed;
+        background: $burgerColor;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        display: none;
+
+        &.active {
+            display: flex;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 100vw;
+            flex-direction: column;
+            pointer-events: all;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            animation: fade 0.1s linear;
+        }
+    }
+}
+
+.search{
+    display: flex;
+    align-items: center ;
+    width: 267px;
+    height: 44px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: #F6F6F6;
+    position: relative;
+    &__input{
+        height: 100%;
+        background-color:#F6F6F6;
+        padding-left: 12px;
+        outline: none;
+
+    }
+    
+}
+.actions-navbar {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+   a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: #F6F6F6;
+    cursor: pointer;
+   }
+}
+
+
+
+
+
+
+.burger {
+}
+
+// ========================= [ Burger styles ] =========================
+.burger {
+    display: none;
+    background: transparent;
+    z-index: 3;
+    @media screen and (max-width: $burgerBreakpoint) {
+        display: flex;
+        position: relative;
+        height: 20px;
+        width: 30px;
+
+        &.active {
+            &:before {
+                background: $burgerActiveColor;
+                transform: rotate(45deg);
+                transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.3s all;
+                top: 8px;
+            }
+
+            &:after {
+                background: $burgerActiveColor;
+                transform: rotate(-45deg);
+                bottom: 10px;
+                transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.3s all;
+            }
+
+            & span {
+                transform: scale(0);
+            }
+        }
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: $burgerColor;
+            transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.3s all;
+        }
+
+        &:before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        span {
+            position: absolute;
+            top: 9px;
+            right: 0;
+            width: 100%;
+            background: $burgerColor;
+            height: 2px;
+            transform: scale(1);
+            transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.3s all;
+        }
+    }
+}
+
+
