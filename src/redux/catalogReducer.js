@@ -12,8 +12,8 @@ import man04 from '../img/Products/man/04.png'
 
 const SET_MEN_PRODUCTS = 'SET_MEN_PRODUCTS';
 const SET_WOMEN_PRODUCTS = 'SET_WOMEN_PRODUCTS';
-const SET_SIZE = 'SET_SIZE';
-const SET_PRICE = 'SET_PRICE';
+const SET_PROPERTY = 'SET_PROPERTY';
+
 
 let initialState = {
   menProducts: [
@@ -54,14 +54,15 @@ const catalogReducer = (state = initialState, action) => {
           ...state,
           womenProducts: action.womenProducts
         } 
-        case SET_SIZE:
-        const { id, newSize } = action;
+        case SET_PROPERTY:
+        const { id, newSize , newColor } = action;
         const updatedMenProducts = state.menProducts.map(item => {
           if (item.id === id) {
             // Обновляем размер и цену товара
             return {
               ...item,
               itemSize: newSize,
+              itemColor: newColor,
             };
           }
           return item;
@@ -91,11 +92,12 @@ export const setWomenProducts = (womenProducts) => {
 }
  
 
-export const changeSize = (id, newSize) => {
+export const changeProperty = (id, newSize , newColor) => {
   return {
-    type: SET_SIZE,
+    type: SET_PROPERTY,
     id,
     newSize,
+    newColor
   }
 }
 

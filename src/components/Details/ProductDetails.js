@@ -15,7 +15,7 @@ const Details = (props) => {
                 <div className="container">
                     <div className="product-detail__groups">
                         <DetailsSlider product = {props.product}/>
-                        <DetailsAbout changeSize = {props.changeSize}  cartContent = {props.cartContent} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart}/>
+                        <DetailsAbout changeProperty = {props.changeProperty}  cartContent = {props.cartContent} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart}/>
                     </div>
                 </div>
             </section>

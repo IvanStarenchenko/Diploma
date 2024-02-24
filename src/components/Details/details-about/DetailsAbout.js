@@ -1,9 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const DetailsAbout = (props) => {
   const [isAdded , setIsAdded] = useState(false)
-  const [isActive , setIsActive] = useState(true)
+  
+  const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+  const colors = ['black', 'yellow', 'pink', 'red'];
+
+  const [activeSize, setActiveSize] = useState(null);
+  const [activeColor, setActiveColor] = useState(null);
   const { id } = useParams();
   const selectedItem = props.product.find((item) => item.id === parseInt(id));
     if (!selectedItem) {
@@ -13,16 +18,21 @@ const DetailsAbout = (props) => {
         props.addItemToCart(selectedItem)
         setIsAdded(true)
     };
-
     const delFromCart = (selectedItem) => {
         props.deleteItemFromCart(selectedItem.id)
         setIsAdded(false)
     }
-    console.log(selectedItem)
-    const handleSizeChange = (newSize , newPrice) => {
-        props.changeSize(selectedItem.id , newSize , newPrice )
-        // props.changePrice(selectedItem.id , newPrice )
+    const handlePropertyChange = (newSize , newColor) => {
+        props.changeProperty(selectedItem.id , newSize , newColor )
     }
+    console.log(selectedItem)
+
+    const classSizeChange = (size) => {
+        setActiveSize(size);
+    };
+    const classColorChange = (color) => {
+        setActiveColor(color);
+    };
 
   return(
         <div className="product-detail__about about-product">
@@ -77,20 +87,29 @@ const DetailsAbout = (props) => {
                 <div className="size-product__guide">Size Guide</div> 
                 </div>
                 <div className="size-product__sizes">
-                    <div  onClick={() => handleSizeChange('XS' , selectedItem.itemPrice)} id="xs">XS</div>
-                    <div  onClick={() => handleSizeChange('S', selectedItem.itemPrice + 25)} id="s">S</div>
-                    <div  onClick={() => handleSizeChange('M', selectedItem.itemPrice + 35)}id="m">M</div>
-                    <div  onClick={() => handleSizeChange('L', selectedItem.itemPrice + 45)}id="l">L</div>
-                    <div  onClick={() => handleSizeChange('XS', selectedItem.itemPrice + 55)}id="xl">XL</div>
+                {sizes.map((size) => (
+                    <div
+                    key={size}
+                    className={activeSize === size  && 'size-active' }
+                    onClick={() =>{ classSizeChange(size) ; handlePropertyChange(size , selectedItem.itemColor)}}
+                    >
+                    {size}
+                    </div>
+                ))}
                 </div>
             </div>
             <div className="about-product__colours colours-product">
                 <h4 className="colours-product__title">Colours Available</h4>
                 <div className="colours-product__colours">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                {colors.map((color) => (
+                        <div
+                        key={color}
+                        className={activeColor === color  && 'color-active'}
+                        onClick={() =>{ classColorChange(color) ; handlePropertyChange(selectedItem.itemSize,color)}}
+                        >
+                        {color}
+                        </div>
+                ))}
                 </div>
             </div>
             <div className="about-product__buttons buttons-product">
