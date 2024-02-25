@@ -12,7 +12,9 @@ const Fashion = () => {
                             <a href="#" className="fashion__btn"><span>Shop Now</span></a>
                         </div>
                     </div>
-                    <div className="fashion__image"><img src={image} alt=""/></div>
+                    <div className="fashion__right">
+                        <img className="fashion__image" src={image} alt="" />
+                    </div>
                 </div>
             </div>
         </section>
