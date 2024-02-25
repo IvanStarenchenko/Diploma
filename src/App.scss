@@ -98,31 +98,68 @@ h6 {
   margin: 0 auto;
   padding: 0 $containerSidePadding + px;
 
-  @media (max-width: $breakpoint1450) {
-      max-width: 1200px;
-  }
-
-  @media (max-width: $breakpoint992) {
-      max-width: 970px;
-  }
-
-  @media (max-width: $breakpoint768) {
-      max-width: 740px;
-  }
-
-  @media (max-width: $breakpoint480) {
-      max-width: none;
+  &--wide {
+    max-width: 1920px;
+    padding: 0;
   }
 }
+
+@media (max-width: $breakpoint1450) {
+  .container {
+    max-width: 1200px;
+
+    &--wide {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: $breakpoint992) {
+  .container {
+    max-width: 970px;
+
+    &--wide {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: $breakpoint768) {
+  .container {
+    max-width: 740px;
+
+    &--wide {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: $breakpoint480) {
+  .container {
+    max-width: none;
+
+    &--wide {
+      max-width: 100%;
+    }
+  }
+}
+
+// block spacing 
+.block {
+  margin-block: clamp(2.5rem, 0.85rem + 6vw, 6.25rem);
+}
+
 // Body & Locked
 body {
   font-family: $fontMain , sans-serif;
+
   &.locked {
-      overflow: hidden;
+    overflow: hidden;
   }
+
   // Dark mode styles
   &.dark {
-      background: #242424;
+    background: #242424;
   }
 }
 
@@ -130,60 +167,63 @@ body {
 // Fade
 @keyframes fade {
   0% {
-      opacity: 0;
+    opacity: 0;
   }
 
   100% {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
--webkit-appearance: none;
-margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
--moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
-.title{
+.title {
   position: relative;
-      margin-top: 100px;
-      margin-bottom: 70px;
-      font-size: 34px;
-      font-weight: 600;
-      line-height: 98.529% ; 
-      letter-spacing: 0.68px;
-      padding-left: 20px;
-      &::after{
-          content:"";
-          position: absolute;
-          height: 100%;
-          width: 7px;
-          border-radius: 10px;
-          background: #8A33FD;
-          left: 0;
-          top: 0%;
-      }
-}
-.active{
-  color: #8A33FD;;
+  margin-bottom: 70px;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 98.529%;
+  letter-spacing: 0.68px;
+  padding-left: 20px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 7px;
+    border-radius: 10px;
+    background: #8A33FD;
+    left: 0;
+    top: 0%;
+  }
 }
 
-.border-bottom{
+.active {
+  color: #8A33FD;
+  ;
+}
+
+.border-bottom {
   border-bottom: 1.5px solid #8A33FD;
 }
 
-#new{
+#new {
   display: none;
 }
 
 
 
-.horizontal, .vertical {
+.horizontal,
+.vertical {
   position: absolute;
   background-color: #3C4242;
 }
@@ -204,35 +244,37 @@ input[type=number] {
 }
 
 
-.active-orders-link{
+.active-orders-link {
   transition: all 0.3s ease 0s;
   background-color: #F6F6F6;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   font-weight: 700;
-      &:before{
-          content: "";
-          position: absolute;
-          bottom: -2px;
-          left: 0%;
-          width: 100%;
-          height: 3px;
-          background-color: $mainColor;
-      }
-    
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0%;
+    width: 100%;
+    height: 3px;
+    background-color: $mainColor;
+  }
+
 }
 
 // ------------------------ СКРЫТЬ ПАРОЛЬ
-.hide-button{
+.hide-button {
   display: flex;
   align-items: center;
   column-gap: 15px;
 }
-#toggle-password-button{
+
+#toggle-password-button {
   cursor: pointer;
 }
 
 // -------TOP LINKS
-.info__navigation{
+.info__navigation {
   margin-top: 23px;
 }
