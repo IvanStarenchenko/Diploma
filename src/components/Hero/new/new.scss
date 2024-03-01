@@ -1,45 +1,46 @@
 @import '../../../App.scss';
-.newStaff{
-    margin: 100px 0 100px 0;
-}
+
 .slide-new {
     &__inner {
         display: flex;
         flex-direction: column;
         row-gap: 32px;
-        img{
+
+        img {
             object-fit: cover;
-            width: 262px;
-            height: 262px;
+            width: 100%;
+            height: 100%;
         }
     }
-}
-.new-product {
 
-    &__name {
-        color: $mainColor;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: normal;
-        letter-spacing: 0.2px;
+    .new-product {
+
+        &__name {
+            color: $mainColor;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: normal;
+            letter-spacing: 0.2px;
+        }
     }
-}
-.new-slider{
-    position: relative;
-    max-width: 1187px;
-    margin: 0 auto;
-}
-.new-container{
-}
-.new-button-prev,.new-button-next {
-    cursor: pointer;
-    position: absolute;
-    left: -5%;
-    top: 42%;
-    z-index: 12;
-    
-}
 
-.new-button-next{
-    left: 102%;
+    .new-slider {
+        position: relative;
+        max-width: 1187px;
+        margin: 0 auto;
+    }
+
+    .new-button-prev,
+    .new-button-next {
+        cursor: pointer;
+        position: absolute;
+        left: -5%;
+        top: 42%;
+        z-index: 12;
+
+    }
+
+    .new-button-next {
+        left: 102%;
+    }
 }

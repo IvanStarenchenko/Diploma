@@ -11,23 +11,33 @@ const Discount = () => {
                     <div className="discount__block">
                         <div className="discount__text">
                             <p className="discount__overtitle">Low Price</p>
+
                             <h3 className="discount__title">High Coziness</h3>
+
                             <div className="discount__subtitle">UPTO 50% OFF</div>
-                            <a href="#" class="discount__link">Explore Items</a>
+
+                            <a href="#" className="discount__link">Explore Items</a>
                         </div>
-                        <img src={first} alt=""/>
+
+                        <img src={first} alt="" />
                     </div>
+
                     <div className="discount__block">
                         <div className="discount__text">
                             <p className="discount__overtitle">Beyoung Presents</p>
-                            <h3 className="discount__title">Breezy Summer <br/>
-                                Style</h3>
+
+                            <h3 className="discount__title">
+                                Breezy Summer <br /> Style
+                            </h3>
+
                             <div className="discount__subtitle">UPTO 50% OFF</div>
+
                             <a href="#" className="discount__link">Explore Items</a>
                         </div>
-                        <img src={second} alt=""/>
-                    </div>  
-                </div>          
+
+                        <img src={second} alt="" />
+                    </div>
+                </div>
             </div>
         </section>
     )

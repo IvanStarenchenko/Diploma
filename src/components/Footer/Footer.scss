@@ -1,99 +1,136 @@
 @import '../../App.scss';
 
-footer {
+.footer {
     display: block;
     background-color: $mainColor;
     color: #F6F6F6;
-}
-
-.footer {
     padding-top: 60px;
-    &__container{
-        
-    }
-		&__menu {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-		}
 
-		&__title {
-            font-size: 28.579px;
-            font-weight: 700;
-            line-height: 216.9%;
-            margin-bottom: 15px;
-		}
-
-		&__item {
-            margin-bottom: 5px;
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 216.9%; 
-            a{
-                color: inherit;
-            }
-		}
-
-		&__groups {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 35px;
-            padding-bottom: 40px;
-		}
-
-		&__social {
-            display: flex;
-            column-gap: 10px;
-            align-self: flex-end;
-		}
-        
-
-		&__stores {
-            display: flex;
-		}
-
-        &__copy{
-            text-align: center;
-            padding-bottom: 60px;
-            color: #FFF;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 200%;
-        }
-}
-
-.stores-footer {
-display: flex;
-align-items: center;
-column-gap: 30px;
-    &__item {
+    &__container {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         align-items: center;
-        column-gap: 10px;
-        margin-bottom: 25px;
+        gap: 40px;
     }
 
-    &__text {
-        color: #FFF;
-
+    &__menu {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        justify-items: center;
+        gap: 40px;
     }
 
-    &__overtitle {
-        font-size: 10px;
-        font-weight: 400;
-        line-height: normal;
+    &__list {
+        width: 100%;
     }
 
     &__title {
+        font-size: 28.579px;
+        font-weight: 700;
+        line-height: 216.9%;
+    }
+
+    &__item {
         font-size: 18px;
-        font-weight: 400;
-        line-height: normal;
+        font-weight: 500;
+        line-height: 2;
+
+        a {
+            color: inherit;
+        }
+    }
+
+    &__groups {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__social {
+        display: flex;
+        column-gap: 10px;
+        align-self: flex-end;
+    }
+
+
+    &__stores {
+        display: flex;
+    }
+
+    &__copy {
+        text-align: center;
+        margin-block-start: 40px;
+        padding-bottom: 60px;
+        color: #FFF;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 200%;
+    }
+
+    .stores-footer {
+        display: flex;
+        align-items: center;
+        column-gap: 30px;
+
+        &__item {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+        }
+
+        &__text {
+            color: #FFF;
+
+        }
+
+        &__overtitle {
+            font-size: 10px;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        &__title {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: normal;
+        }
     }
 }
 
+@media (max-width: $breakpoint768) {
+    .footer {
+        text-align: center;
 
+        &__container {
+            justify-content: center;
+        }
 
+        &__menu {
+            gap: 30px;
+        }
+
+        &__groups {
+            width: 100%;
+            justify-content: center;
+        }
+
+        &__title {
+            margin-block-end: 20px;
+        }
+
+        &__stores {
+            flex-direction: column;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        &__copy {
+            padding: 0 20px 50px;
+        }
+    }
+}
 
 // .accordion {
 //     padding-bottom: 37px;

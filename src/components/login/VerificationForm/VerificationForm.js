@@ -1,16 +1,16 @@
 
 import { NavLink } from "react-router-dom"
 import { Field, reduxForm } from "redux-form"
-import { required , maxLenghtCreator} from "../../../utils/validators"
-import {Input} from '../../Common/FormsControls/FormsControls'
+import { required, maxLenghtCreator } from "../../../utils/validators"
+import { Input } from '../../Common/FormsControls/FormsControls'
 const ResetForm = () => {
     return (
         <form>
-            <div class="inner-sign__code verification__code">
-                <label for="email">Verification Code </label> 
-                <Field class="inner-sign__input" id="code" type="number"  name={"code"} component={Input} validate = {required}/>
+            <div className="inner-sign__code verification__code">
+                <label for="email">Verification Code </label>
+                <Field className="inner-sign__input" id="code" type="number" name={"code"} component={Input} validate={required} />
             </div>
-            <button type="submit" class="inner-sign__button">Verify Code</button>
+            <button type="submit" className="inner-sign__button">Verify Code</button>
         </form>
     )
 }

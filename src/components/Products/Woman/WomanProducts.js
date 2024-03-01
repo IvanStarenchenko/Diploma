@@ -9,30 +9,38 @@ import CatalogWomen from '../Catalog'
 import { useState } from 'react'
 import { connect } from 'react-redux'
 
-const WomansProducts = (props) =>{
+const WomansProducts = (props) => {
 
     return (
         <div className="container ">
             <section className="catalog">
                 <div className='filter'>
-                    <Filter/>
+                    <Filter />
                 </div>
+
                 <div className="catalog-products">
                     <div className="catalog-products__top">
                         <h3 className="catalog-products__title">Women’s Clothing</h3>
+
+                        <div className="catalog-products__filter">Filter</div>
+
                         <div className="catalog-products__controls">
                             <div className="catalog-products__new active" id="newBtn">New</div>
+
                             <div className="catalog-products__recommended" id="recommendedBtn">Recommended</div>
                         </div>
                     </div>
-                    <div className='catalog'>
-                        <CatalogWomen items = {props.products} />
-                    </div>   
+
+                    <div className='products'>
+                        <CatalogWomen items={props.products} />
+                    </div>
                 </div>
             </section>
+
             <section className="online">
-                <Online/>
+                <Online />
             </section>
+
             <section className="best-prices">
                 <BestPrices />
             </section>
@@ -41,7 +49,7 @@ const WomansProducts = (props) =>{
 }
 
 const mapStateToProps = (state) => {
-    return{
+    return {
         products: state.catalog.womenProducts,
         pageSize: state.catalog.pageSize,
         currentPage: state.catalog.currentPage,
@@ -49,4 +57,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps , {getMenProducts})(WomansProducts)
+export default connect(mapStateToProps, { getMenProducts })(WomansProducts)

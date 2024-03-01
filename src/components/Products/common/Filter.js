@@ -1,4 +1,4 @@
-import {AccordionClothesBlock , AccordionColorsBlock , AccordionSizeBlock , AccordionPriceBlock, AccordionStyleBlock} from './Accordion';
+import { AccordionClothesBlock, AccordionColorsBlock, AccordionSizeBlock, AccordionPriceBlock, AccordionStyleBlock } from './Accordion';
 
 
 const Filter = () => {
@@ -22,44 +22,48 @@ const Filter = () => {
     { title: 'Formal (evening)', items: ['item1', 'item2', 'item3'] },
   ];
   const accordionColorsData = [
-    { title: 'Colors', items: ['Purple', 'Black', 'Red', 'Orange',
-                                'Navy', 'White', 'Broom', 'Green',
-                                'Yellow', 'Grey', 'Pink', 'Blue',] },
+    {
+      title: 'Colors', items: ['Purple', 'Black', 'Red', 'Orange',
+        'Navy', 'White', 'Broom', 'Green',
+        'Yellow', 'Grey', 'Pink', 'Blue',]
+    },
   ];
   const accordionSizeData = [
-    { items: ['XXS', 'XL', 'XS', 'S',
-             'M', 'L', 'XXL', '3XL','4XL'] },
-                                
+    {
+      items: ['XXS', 'XL', 'XS', 'S',
+        'M', 'L', 'XXL', '3XL', '4XL']
+    },
+
   ];
 
   return (
     <div className="catalog-filter">
-      <h3 class="catalog-filter__title">Filter</h3>
+      <h3 className="catalog-filter__title">Filter</h3>
       <div className="catalog-filter__settings">
         <div className='wrapper'>
-            <div className='filter-menu__clothing'>
-                {accordionClothesData.map((data, index) => (
-                <AccordionClothesBlock key={index} title={data.title} items={data.items} />
-                ))}
-            </div>
-            <div className='filter-menu__colors'>
-                {accordionColorsData.map((data, index) => (
-                <AccordionColorsBlock key={index} title={data.title} items={data.items} />
-                ))}
-            </div>
-            <div className='filter-menu__price'>
-                <AccordionPriceBlock />
-            </div>
-            <div className='filter-menu__size'>
-                {accordionSizeData.map((data, index) => (
-                  <AccordionSizeBlock key={index} items={data.items} />
-                ))}
-            </div>
-            <div className='filter-menu__style'>
-                {accordionStylesData.map((data, index) => (
-                  <AccordionStyleBlock key={index} title = {data.title} items={data.items} />
-                ))}
-            </div>
+          <div className='filter-menu__clothing'>
+            {accordionClothesData.map((data, index) => (
+              <AccordionClothesBlock key={index} title={data.title} items={data.items} />
+            ))}
+          </div>
+          <div className='filter-menu__colors'>
+            {accordionColorsData.map((data, index) => (
+              <AccordionColorsBlock key={index} title={data.title} items={data.items} />
+            ))}
+          </div>
+          <div className='filter-menu__price'>
+            <AccordionPriceBlock />
+          </div>
+          <div className='filter-menu__size'>
+            {accordionSizeData.map((data, index) => (
+              <AccordionSizeBlock key={index} items={data.items} />
+            ))}
+          </div>
+          <div className='filter-menu__style'>
+            {accordionStylesData.map((data, index) => (
+              <AccordionStyleBlock key={index} title={data.title} items={data.items} />
+            ))}
+          </div>
         </div>
       </div>
       {/* Другие блоки фильтров */}
