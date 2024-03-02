@@ -37,7 +37,7 @@ const NewStaff = ({ slides }) => {
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
-          <div className="swiper-slide slide-new">
+          <div className="slide-new">
             <div className="slide-new__inner">
               <img src={slide} alt={`Slide ${index + 1}`} />
               <div className="new-product__name">Knitted Joggers</div>
@@ -49,7 +49,5 @@ const NewStaff = ({ slides }) => {
     </Swiper>
   );
 };
-
-
 
 export default NewStaff

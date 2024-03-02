@@ -191,12 +191,12 @@
 @media (max-width: $breakpoint768) {
     .header {
         .navbar {
-            justify-content: initial;
+            justify-content: space-between;
             gap: 10px;
         }
 
         .actions-navbar {
-            margin-inline-start: auto;
+            display: none;
         }
 
         .search {
