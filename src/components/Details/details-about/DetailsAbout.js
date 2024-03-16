@@ -23,9 +23,9 @@ const DetailsAbout = (props) => {
         props.deleteItemFromCart(selectedItem.id)
         setIsAdded(false)
     }
-    const handlePropertyChange = (newSize , newColor) => {
-        props.changeProperty(selectedItem.id , newSize , newColor )
-    }
+    // const handlePropertyChange = (newSize , newColor) => {
+    //     props.changeProperty(selectedItem.id , newSize , newColor )
+    // }
     console.log(selectedItem)
 
     const classSizeChange = (size) => {
@@ -92,7 +92,7 @@ const DetailsAbout = (props) => {
                     <div
                     key={size}
                     className={activeSize === size  && 'size-active' }
-                    onClick={() =>{ classSizeChange(size) ; handlePropertyChange(size , selectedItem.itemColor)}}
+                    onClick={() =>{ classSizeChange(size) ;}}
                     >
                     {size}
                     </div>
@@ -106,7 +106,8 @@ const DetailsAbout = (props) => {
                         <div
                         key={color}
                         className={activeColor === color  && 'color-active'}
-                        onClick={() =>{ classColorChange(color) ; handlePropertyChange(selectedItem.itemSize,color)}}
+                        onClick={() =>{ classColorChange(color) ;}}
+                        // handlePropertyChange(selectedItem.itemSize,color)
                         >
                         {color}
                         </div>
