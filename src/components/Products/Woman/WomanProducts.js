@@ -13,7 +13,7 @@ const WomansProducts = (props) => {
 
     return (
         <div className="container ">
-            <section className="catalog">
+            <section className="block catalog">
                 <div className='filter'>
                     <Filter />
                 </div>
@@ -37,11 +37,11 @@ const WomansProducts = (props) => {
                 </div>
             </section>
 
-            <section className="online">
+            <section className="block online">
                 <Online />
             </section>
 
-            <section className="best-prices">
+            <section className="block  best-prices">
                 <BestPrices />
             </section>
         </div>
