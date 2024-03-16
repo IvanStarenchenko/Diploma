@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 const DetailsAbout = (props) => {
   const [isAdded , setIsAdded] = useState(false)
 //   const [isSize , setActiveSize] = useState(false)
-  const sizes = ['S' , 'M' , 'L' , 'XL']
+    const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+    const colors = ['black', 'yellow', 'pink', 'red'];
+
+    const [activeSize, setActiveSize] = useState(null);
+    const [activeColor, setActiveColor] = useState(null);
   const { id } = useParams();
   const selectedItem = props.product.find((item) => item.id === parseInt(id));
     console.log(selectedItem.id)
