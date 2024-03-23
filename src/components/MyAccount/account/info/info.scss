@@ -1,95 +1,97 @@
 @import '../../../../App.scss';
 
 .account {
-
     &__content {
         display: grid;
-        grid-template-columns: 355px 1fr;
-        justify-content: space-between;
+        grid-template-columns: auto 1fr;
         column-gap: 50px;
     }
 
+    .aside-inner {
+        &__name {
+            position: relative;
+            margin: 15px 0px 15px 0;
+            font-size: 34px;
+            font-weight: 600;
+            line-height: 98.529%;
+            letter-spacing: 0.68px;
+            padding-left: 20px;
+
+            &::after {
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 7px;
+                border-radius: 10px;
+                background: #8A33FD;
+                left: 0;
+                top: 0%;
+            }
+        }
+
+        &__links {
+            display: flex;
+            align-items: center;
+            column-gap: 35px;
+            margin-bottom: 52px;
+            color: #807D7E;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: normal;
+        }
+
+        &__text {
+            color: #807D7E;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 239.286%;
+            letter-spacing: 0.28px;
+            margin-bottom: 41px;
+        }
+
+        &__nav {
+            max-width: 295px;
+        }
+
+        &__list {
+            display: flex;
+            flex-direction: column;
+            row-gap: 19px;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            column-gap: 17px;
+            padding: 11px 0 11px 35px;
+            color: #807D7E;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: normal;
+            border-left: 2px solid transparent;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+
+            &:hover {
+                background-color: #F6F6F6;
+                border-color: #000;
+            }
+
+            button {
+                color: #807D7E;
+                font-size: 18px;
+                font-weight: 600;
+                line-height: normal;
+                background-color: transparent;
+            }
+        }
+    }
 }
-.aside-inner {
-    &__name{
-     position: relative;
-     margin: 15px 0px 15px 0 ;
-     font-size: 34px;
-     font-weight: 600;
-     line-height: 98.529% ; 
-     letter-spacing: 0.68px;
-     padding-left: 20px;
-     &::after{
-         content:"";
-         position: absolute;
-         height: 100%;
-         width: 7px;
-         border-radius: 10px;
-         background: #8A33FD;
-         left: 0;
-         top: 0%;
-     }
-     }
-     &__links {
-         display: flex;
-         align-items: center;
-         column-gap: 35px;
-         margin-bottom: 52px;
-         color: #807D7E;
-         font-size: 18px;
-         font-weight: 500;
-         line-height: normal;
-     }
- 
-     &__text {
-         color: #807D7E;
-         font-size: 14px;
-         font-weight: 400;
-         line-height:  239.286%;
-         letter-spacing: 0.28px;
-         margin-bottom: 41px;
-     }
- 
-     &__nav {
-         max-width: 295px;
-     }
- 
-     &__list {
-         display: flex;
-         flex-direction: column;
-         row-gap: 19px;
-     }
- 
-     &__item {
-         display: flex;
-         align-items: center;
-         column-gap: 17px;
-         padding: 11px 0 11px 35px;
-         color: #807D7E;
-         font-size: 18px;
-         font-weight: 600;
-         line-height: normal;
-         border-left: 2px solid transparent;
-         cursor: pointer;
-         transition: background-color 0.3s , border-color 0.3s;
-         &:hover{
-             background-color: #F6F6F6;
-             border-color: #000;
-         }
-         button{
-             color: #807D7E;
-             font-size: 18px;
-             font-weight: 600;
-             line-height: normal;
-             background-color: transparent;
-         }
-     }
- }
 
 
-.edit-button{
+.edit-button {
     padding: 8px 11px;
-    background-color:#8840F8;
+    background-color: #8840F8;
     border-radius: 3px;
     color: #fff;
     font-size: 16px;
@@ -99,16 +101,16 @@
 }
 
 .info-inner {
-    &__title{
+    &__title {
         margin-bottom: 20px;
     }
-    &__subtitle{
+
+    &__subtitle {
         margin-bottom: 30px;
     }
+
     &__adress {
         margin-bottom: 100px;
-    }
-    &__contacts {
     }
 }
 
@@ -116,6 +118,7 @@
     margin-bottom: 27px;
     display: flex;
     flex-direction: column;
+
     &__block {
         display: flex;
         justify-content: space-between;
@@ -124,25 +127,29 @@
         line-height: normal;
         color: $mainColor;
         border-bottom: 1px solid #EDEEF2;
-        button{
+
+        button {
             background-color: transparent;
             color: #3C4242;
             font-size: 18px;
             font-weight: 600;
             line-height: normal;
         }
-        p{
+
+        p {
             color: #807D7E;
             margin-bottom: 8px;
         }
-       
+
 
         padding-bottom: 22px;
-        &:not(:first-child){
+
+        &:not(:first-child) {
             padding-top: 20px;
         }
     }
 }
+
 // .change-input{
 //     outline: none;
 //     color: #3C4242;
@@ -160,8 +167,9 @@
 
     &__group {
         display: grid;
-        grid-template-columns: repeat(2 , 435px);
-        gap: 25px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        justify-items: center;
+        gap: 50px;
     }
 
     &__block {
@@ -170,7 +178,8 @@
         row-gap: 20px;
         background-color: #F6F6F6;
         border-radius: 12px;
-        padding: 25px 43px;
+        padding-block: 25px;
+        padding-inline: clamp(0.938rem, -0.313rem + 6.25vw, 2.688rem);
     }
 
     &__name {
@@ -197,7 +206,8 @@
     &__settings {
         display: flex;
         align-items: center;
-        column-gap: 12px;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     &__setting {
@@ -214,7 +224,9 @@
     &__buttons {
         display: flex;
         align-items: center;
-        column-gap: 10px;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: auto;
     }
 
     &__button {
@@ -222,12 +234,14 @@
         font-size: 16px;
         font-weight: 600;
         line-height: normal;
-        &:not(:last-child){
+
+        &:not(:last-child) {
             padding-right: 10px;
             border-right: 1px solid #D9D9D9;
         }
     }
 }
+
 .content-title {
     color: $mainColor;
     font-size: 28px;
@@ -236,10 +250,86 @@
     letter-spacing: 0.56px;
     margin-top: 97px;
 }
-.content-subtitle{
+
+.content-subtitle {
     color: $mainColor;
     font-size: 22px;
     font-weight: 600;
-    line-height: 152.273% ; 
+    line-height: 152.273%;
     letter-spacing: 0.44px
+}
+
+@media screen and (max-width: 1024px) {
+    .account {
+        &__content {
+            grid-template-columns: 1fr;
+        }
+
+        .wishlist-inner {
+            .wishlist__title {
+                margin-top: 50px;
+            }
+
+            &__block {
+                gap: 10px;
+            }
+        }
+
+        .aside-inner {
+            &__nav {
+                max-width: initial;
+            }
+
+            &__list {
+                gap: 20px;
+            }
+
+            &__item {
+                padding: 0;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .account {
+        .aside-inner {
+            &__item {
+                width: 50%;
+            }
+        }
+
+        .wishlist-inner {
+            &__group {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                justify-items: center;
+                gap: 50px;
+            }
+
+            &__block {
+                position: relative;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 10px;
+                width: 100%;
+                max-width: 350px;
+                justify-items: center;
+                border: 1px solid #EDEEF2;
+                border-radius: 16px;
+                padding-inline: clamp(1rem, 0.598rem + 2.01vw, 1.563rem);
+                padding-block: 20px;
+            }
+
+            &__button {
+                width: 100%;
+            }
+
+            &__delete {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    }
 }
