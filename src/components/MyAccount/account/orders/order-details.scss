@@ -2,15 +2,14 @@
 
 
 .details-inner {
-    &_color {
-    }
 
     &__title {
         display: flex;
         align-items: center;
         column-gap: 15px;
         margin-bottom: 50px;
-        button{
+
+        button {
             background-color: transparent;
             font-size: 18px;
         }
@@ -48,7 +47,8 @@
         font-size: 16px;
         font-weight: 600;
         line-height: normal;
-        span{
+
+        span {
             color: $mainColor;
         }
     }
@@ -66,15 +66,17 @@
         border: 0.5px solid rgba(128, 125, 126, 0.20);
         background: #F6F6F6;
 
-        &:before{
+        &:before {
             content: "";
             position: absolute;
             top: -20px;
             left: 122px;
             width: 0;
             height: 0;
-            border-left: 30px solid transparent; /* Левая сторона треугольника */
-            border-right: 30px solid transparent; /* Правая сторона треугольника */
+            border-left: 30px solid transparent;
+            /* Левая сторона треугольника */
+            border-right: 30px solid transparent;
+            /* Правая сторона треугольника */
             border-bottom: 35px solid #F6F6F6;
         }
     }
@@ -107,16 +109,19 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        &:not(:last-child){
+
+        &:not(:last-child) {
             border-bottom: 1px solid #BEBCBD;
             padding-bottom: 30px;
         }
+
         color: #3C4242;
         font-size: 18px;
         font-weight: 700;
         line-height: normal;
         letter-spacing: 0.44px;
-        span{
+
+        span {
             color: #807D7E;
         }
     }
@@ -130,7 +135,8 @@
     &__image {
         width: 102px;
         height: 102px;
-        img{
+
+        img {
             width: 100%;
         }
     }
@@ -140,7 +146,7 @@
         flex-direction: column;
         row-gap: 10px;
 
-        
+
     }
 
 
@@ -156,13 +162,15 @@
     background-color: #BEBCBD;
     height: 4px;
     margin: 0 auto;
+
     span {
         position: absolute;
         width: 20px;
         height: 20px;
         top: -175%;
     }
-    p{
+
+    p {
         width: 95px;
         margin-top: 31px;
         color: #000;
@@ -174,6 +182,7 @@
     }
 
 }
+
 .progress-ready {
     position: absolute;
     width: 20px;
@@ -181,17 +190,20 @@
     left: -1%;
     background-color: $mainColor;
     border-radius: 50%;
-    
+
 }
+
 .progress-inprogress {
     position: relative;
     left: 171px;
     background-color: #BEBCBD;
     border-radius: 50%;
-    p{
+
+    p {
         right: 25px;
     }
-    &::before{
+
+    &::before {
         content: "";
         position: absolute;
         top: 50%;
@@ -199,26 +211,29 @@
         width: 14px;
         height: 14px;
         border-radius: 50%;
-        transform: translate(-50% , -50%);
+        transform: translate(-50%, -50%);
         background-color: $mainColor;
     }
 }
+
 .progress-notready {
     position: relative;
     left: 355px;
     background-color: #BEBCBD;
     border-radius: 50%;
-    p{
+
+    p {
         right: 18px;
     }
-    &--end{
+
+    &--end {
         position: relative;
         left: 543px;
         background-color: #BEBCBD;
         border-radius: 50%;
-        p{
+
+        p {
             right: 22px;
         }
     }
 }
-
