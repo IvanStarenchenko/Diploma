@@ -32,12 +32,18 @@
             align-items: center;
             column-gap: 25px;
             cursor: pointer;
+            button{
+                font-size: 18px;
+                background-color: transparent;
+                font-weight: 600;
+            }
         }
 
         &__cards {
             display: grid;
             gap: 25px;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+           
         }
 
         .card {
@@ -57,6 +63,11 @@
                 position: absolute;
                 inset: 25px 20px auto auto;
                 cursor: pointer;
+                background-color: transparent;
+                transition: transform 0.3s ease 0s;
+                &:hover{
+                    transform: scale(1.1);
+                }
             }
 
             &__content {

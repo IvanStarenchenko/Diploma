@@ -5,12 +5,14 @@ import { getMenProducts } from '../../../redux/catalogReducer'
 import Filter from '../common/Filter'
 import Online from '../common/Online'
 import BestPrices from '../common/BestPrices'
-import CatalogWomen from '../Catalog'
+import CatalogWomen from '../CatalogNew'
 import { useState } from 'react'
 import { connect } from 'react-redux'
 
 const WomansProducts = (props) => {
-
+    const [isSwitched , setSwitch] = useState(false)
+    const [isNewActive , setActiveNew] = useState(true)
+    const [isRecActive , setActiveRec] = useState(false)
     return (
         <div className="container ">
             <section className="block catalog">
@@ -25,9 +27,9 @@ const WomansProducts = (props) => {
                         <div className="catalog-products__filter">Filter</div>
 
                         <div className="catalog-products__controls">
-                            <div className="catalog-products__new active" id="newBtn">New</div>
+                        <button onClick={() => {setSwitch(false); setActiveRec(false); setActiveNew(true)} } className={isNewActive ? "catalog-products__new active" : "catalog-products__new" }  id="newBtn">New</button>
 
-                            <div className="catalog-products__recommended" id="recommendedBtn">Recommended</div>
+<button onClick= {() => {setSwitch(true); setActiveRec(true); setActiveNew(false)}}className={isRecActive ? "catalog-products__recomended active" : "catalog-products__recomended" } id="recommendedBtn">Recommended</button>
                         </div>
                     </div>
 
