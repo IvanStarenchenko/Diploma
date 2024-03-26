@@ -11,7 +11,8 @@ const cartReducer = (state = initialState, action) => {
        return {
             ...state,
               cartContent: [...state.cartContent , 
-                {id: action.item.id ,
+                { 
+                id: action.item.id ,
                 image: action.item.itemImageMain,
                 name: action.item.itemName, 
                 color: action.item.itemColor ,
