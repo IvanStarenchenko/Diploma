@@ -1,15 +1,21 @@
 import './account/wish/wishlist.scss'
 import Aside from './Aside'
-import wish1 from '../../img/account/wish/1.png'
-import wish2 from '../../img/account/wish/2.png'
-import wish3 from '../../img/account/wish/3.png'
-import wish4 from '../../img/account/wish/4.png'
+import { useParams } from 'react-router-dom';
 import empty from '../../img/cart/empty.png'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { deleteItemFromFav } from '../../redux/favoriteReducer'
+import { deleteItemFromFav} from '../../redux/favoriteReducer'
+import { addItemToCart} from '../../redux/cartReducer'
 const Wishlist = (props) => {
     const favItemId = props.favoriteContent.id
+    const { id } = useParams();
+    
+    const selectedItem = props.product.find((item) => item.id === parseInt(id));
+
+    const setItemToCart = (selectedItem) => {
+        props.addItemToCart(selectedItem);
+        
+    };
     const deleteItem = (favItemId) => {
         props.deleteItemFromFav(favItemId)
     }
@@ -48,7 +54,7 @@ const Wishlist = (props) => {
                                                             <div className="wishlist-inner__quantity">Quantity : 1</div>
                                                         </div>
                                                         <div className="wishlist-inner__price">{item.priceS}</div>
-                                                        <div className="wishlist-inner__button">Add to cart</div>
+                                                        <button className="wishlist-inner__button" onClick={() => setItemToCart(selectedItem)}>Add to cart</button>
                                                     </div>
                                                 </div>
                                             </> 
@@ -68,7 +74,9 @@ const Wishlist = (props) => {
 const mapStateToProps = (state) =>{
     return {
         favoriteContent: state.favorite.favoriteContent,
+        product: state.catalog.menProducts, 
     }
 }
 
-export default connect(mapStateToProps , {deleteItemFromFav})(Wishlist)
+
+export default connect(mapStateToProps ,  { addItemToCart , deleteItemFromFav})(Wishlist)

@@ -11,7 +11,7 @@ const DetailsAbout = (props) => {
     const { id } = useParams();
 
     const selectedItem = props.product.find((item) => item.id === parseInt(id));
-    const isItemInCart = props.cartContent.some(item => item.id === selectedItem.id && item.color === activeColor && item.size === activeSize);
+    const isItemInCart = props.cartContent.some(item => item.color === activeColor && item.size === activeSize);
 
     if (!selectedItem) {
         return <div>Товар не найден</div>
@@ -29,6 +29,7 @@ const DetailsAbout = (props) => {
     const handlePropertyChange = (newSize , newColor) => {
         props.changeProperty(selectedItem.id , newSize , newColor )
     }
+
     const classSizeChange = (size) => {
         setActiveSize(size);
     };

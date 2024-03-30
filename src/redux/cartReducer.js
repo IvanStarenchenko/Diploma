@@ -2,6 +2,7 @@ const SET_ITEM = 'SET_ITEM';
 const DEL_ITEM = 'DEL_ITEM';
 let initialState = {
   cartContent: [] , 
+  nextItemId: 1,
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -12,7 +13,7 @@ const cartReducer = (state = initialState, action) => {
             ...state,
               cartContent: [...state.cartContent , 
                 { 
-                id: action.item.id ,
+                id: state.nextItemId,
                 image: action.item.itemImageMain,
                 name: action.item.itemName, 
                 color: action.item.itemColor ,
@@ -20,12 +21,13 @@ const cartReducer = (state = initialState, action) => {
                 price: action.item.itemPrice, 
                 count: 1 , 
                 subtotal: action.item.itemSubtotal }],
+                nextItemId: state.nextItemId + 1,
           };
       case DEL_ITEM:
        return {
             ...state,
             cartContent: state.cartContent.filter((item) => item.id !== action.item),
-
+            nextItemId: state.nextItemId - 1, 
           };
      
 

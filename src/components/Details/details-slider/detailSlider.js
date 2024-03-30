@@ -53,9 +53,11 @@ import { useParams } from 'react-router-dom';
 //         </div>
 //     )
 // }
-const DetailsSlider = () => {
+const DetailsSlider = (props) => {
     const images = [first, second, third, fourth]
     const [thumbsSwiper] = useState(null);
+    const { id } = useParams();
+    const selectedItem = props.product.find((item) => item.id === parseInt(id));
     return (
         <Swiper
             modules={[Pagination, Scrollbar, Navigation, Thumbs, FreeMode]}
@@ -67,7 +69,7 @@ const DetailsSlider = () => {
         >
             {images.map((slide, index) => (
                 <SwiperSlide key={index} className="swiper-slide">
-                    <img src={slide} />
+                    <img src={selectedItem && selectedItem.itemImageMain} />
                 </SwiperSlide>
             ))}
         </Swiper>

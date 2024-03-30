@@ -17,22 +17,22 @@ const SET_PROPERTY = 'SET_PROPERTY';
 
 let initialState = {
   menProducts: [
-    { id: 1 , itemImageMain: man01 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'line Pattern Black N...' , itemBrand: 'AS’s  Brand' , itemPrice: 123.00 + '$',  itemColor: 'Orange' , itemSize:'XS', itemSubtotal: '123.00$'},
-    { id: 2 , itemImageMain: man02 , itemImageSide: man03 , itemImageSide2: man04 , itemImageSide3: man01 , itemName: 'line Pattern Black I...' , itemBrand: 'AS’s  Brand' , itemPrice: 124.00 + '$',  itemColor: 'Black' , itemSize:'XS', itemSubtotal: '124.00$'},
-    { id: 3 , itemImageMain: man03 , itemImageSide: man04 , itemImageSide2: man03 , itemImageSide3: man02 , itemName: 'line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 125.00 + '$',  itemColor: 'Brown' , itemSize:'XS', itemSubtotal: '125.00$'},
-    { id: 4 , itemImageMain: man04 , itemImageSide: man01 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 126.00 + '$',  itemColor: 'Green' , itemSize:'XS', itemSubtotal: '126.00$'},
-    { id: 5 , itemImageMain: man03 , itemImageSide: man04 , itemImageSide2: man01 , itemImageSide3: man02 , itemName: 'line Pattern Black E...' , itemBrand: 'AS’s  Brand' , itemPrice: 127.00 + '$',  itemColor: 'Brown' , itemSize:'XS', itemSubtotal: '127.00$'},
-    { id: 6 , itemImageMain: man01 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'line Pattern Black R...' , itemBrand: 'AS’s  Brand' , itemPrice: 128.00 + '$', itemColor: 'Orange' , itemSize:'XS', itemSubtotal: '128.00$'},
+    { id: 1 , itemImageMain: man01 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'line Pattern Black N...' , itemBrand: 'AS’s  Brand' , itemPrice: 123.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '123.00$'},
+    { id: 2 , itemImageMain: man02 , itemImageSide: man03 , itemImageSide2: man04 , itemImageSide3: man01 , itemName: 'line Pattern Black I...' , itemBrand: 'AS’s  Brand' , itemPrice: 124.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '124.00$'},
+    { id: 3 , itemImageMain: man03 , itemImageSide: man04 , itemImageSide2: man03 , itemImageSide3: man02 , itemName: 'line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 125.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '125.00$'},
+    { id: 4 , itemImageMain: man04 , itemImageSide: man01 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 126.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '126.00$'},
+    { id: 5 , itemImageMain: man03 , itemImageSide: man04 , itemImageSide2: man01 , itemImageSide3: man02 , itemName: 'line Pattern Black E...' , itemBrand: 'AS’s  Brand' , itemPrice: 127.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '127.00$'},
+    { id: 6 , itemImageMain: man01 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'line Pattern Black R...' , itemBrand: 'AS’s  Brand' , itemPrice: 128.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '128.00$'},
 
 ],
 
 menProductsRec: [
-  { id: 1 , itemImageMain: man02 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'Rec line Pattern Black N...' , itemBrand: 'AS’s  Brand' , itemPrice: 123.00 + '$',  itemColor: 'Orange' , itemSize:'XS', itemSubtotal: '123.00$'},
-  { id: 2 , itemImageMain: man03 , itemImageSide: man03 , itemImageSide2: man04 , itemImageSide3: man01 , itemName: 'Rec line Pattern Black I...' , itemBrand: 'AS’s  Brand' , itemPrice: 124.00 + '$',  itemColor: 'Black' , itemSize:'XS', itemSubtotal: '124.00$'},
-  { id: 3 , itemImageMain: man01 , itemImageSide: man04 , itemImageSide2: man03 , itemImageSide3: man02 , itemName: 'Rec line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 125.00 + '$',  itemColor: 'Brown' , itemSize:'XS', itemSubtotal: '125.00$'},
-  { id: 4 , itemImageMain: man04 , itemImageSide: man01 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'Rec line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 126.00 + '$',  itemColor: 'Green' , itemSize:'XS', itemSubtotal: '126.00$'},
-  { id: 5 , itemImageMain: man03 , itemImageSide: man04 , itemImageSide2: man01 , itemImageSide3: man02 , itemName: 'Rec line Pattern Black E...' , itemBrand: 'AS’s  Brand' , itemPrice: 127.00 + '$',  itemColor: 'Brown' , itemSize:'XS', itemSubtotal: '127.00$'},
-  { id: 6 , itemImageMain: man02 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'Rec line Pattern Black R...' , itemBrand: 'AS’s  Brand' , itemPrice: 128.00 + '$', itemColor: 'Orange' , itemSize:'XS', itemSubtotal: '128.00$'},
+  { id: 1 , itemImageMain: man02 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'Rec line Pattern Black N...' , itemBrand: 'AS’s  Brand' , itemPrice: 123.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '123.00$'},
+  { id: 2 , itemImageMain: man03 , itemImageSide: man03 , itemImageSide2: man04 , itemImageSide3: man01 , itemName: 'Rec line Pattern Black I...' , itemBrand: 'AS’s  Brand' , itemPrice: 124.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '124.00$'},
+  { id: 3 , itemImageMain: man01 , itemImageSide: man04 , itemImageSide2: man03 , itemImageSide3: man02 , itemName: 'Rec line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 125.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '125.00$'},
+  { id: 4 , itemImageMain: man04 , itemImageSide: man01 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'Rec line Pattern Black G...' , itemBrand: 'AS’s  Brand' , itemPrice: 126.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '126.00$'},
+  { id: 5 , itemImageMain: man03 , itemImageSide: man04 , itemImageSide2: man01 , itemImageSide3: man02 , itemName: 'Rec line Pattern Black E...' , itemBrand: 'AS’s  Brand' , itemPrice: 127.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '127.00$'},
+  { id: 6 , itemImageMain: man02 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'Rec line Pattern Black R...' , itemBrand: 'AS’s  Brand' , itemPrice: 128.00 + '$',  itemColor: 'black' , itemSize:'XS', itemSubtotal: '128.00$'},
 
 ],
 
