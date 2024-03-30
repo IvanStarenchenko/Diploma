@@ -1,10 +1,10 @@
-import { connect } from "react-redux"
-import { useParams } from 'react-router-dom';
 import { NavLink } from "react-router-dom"
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import {addItemToFav , deleteItemFromFav} from '../../../redux/favoriteReducer'
-
-const DetailsSimilar = (props) => {
+import {addItemToFav , deleteItemFromFav} from '../../redux/favoriteReducer'
+import { compose } from 'redux';
+import { connect } from "react-redux"
+const Catalog = (props) => {
     const [addedItems, setAddedItems] = useState(new Set());
 
     const { id } = useParams();
@@ -21,9 +21,9 @@ const DetailsSimilar = (props) => {
     };
 
     return (
-        <div className="product-similar__cards" id="recommended">
-            {props.product.map(item => (
-                <div key={item.id} className="product-similar__card card-content">
+        <div className="catalog-products__cards" id="recommended">
+            {props.items.map(item => (
+                <div key={item.id} className="catalog-products__card card">
                     {!addedItems.has(item.id)
                             ? <button className="card__fav" onClick={() => setItemToFav(item)}> 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34" fill="none">
@@ -40,13 +40,13 @@ const DetailsSimilar = (props) => {
                     }
                     
                     <NavLink to={`/Description/${item.id}`} >
-                        <img className="card-content__image" src={item.itemImageMain} alt='' />
-                        <div className="card-content__content">
-                            <div className="card-content__text">
-                                <div className="card-content__name">{item.itemName}</div>
-                                <div className="card-content__brand">{item.itemBrand}</div>
+                        <img className="card__image" src={item.itemImageMain} alt='' />
+                        <div className="card__content">
+                            <div className="card__text">
+                                <div className="card__name">{item.itemName}</div>
+                                <div className="card__brand">{item.itemBrand}</div>
                             </div>
-                            <div className="card-content__price">{item.itemPrice}</div>
+                            <div className="card__price">{item.itemPrice}</div>
                         </div>
                     </NavLink>
                 </div>
@@ -63,6 +63,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {addItemToFav, deleteItemFromFav})(DetailsSimilar);
+export default connect(mapStateToProps, {addItemToFav, deleteItemFromFav})(Catalog);
+
+
 
 

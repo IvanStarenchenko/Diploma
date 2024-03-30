@@ -22,15 +22,17 @@ const CartContent = (props) => {
                                 <NavLink className='emptyButton' to={'/Man'}><span>Continue Shopping</span></NavLink>
                             </div>
                             : props.cartContent.map(item => (
+                                <>
+                                <ul className="cart__details">
+                                    <li>Product Details</li>
+                                    <li>Price</li>
+                                    <li>Quantity</li>
+                                    <li>shipping</li>
+                                    <li>subtotal</li>
+                                    <li>action</li>
+                                </ul>
                                 <div key={item.id}>
-                                    <ul className="cart__details">
-                                        <li>Product Details</li>
-                                        <li>Price</li>
-                                        <li>Quantity</li>
-                                        <li>shipping</li>
-                                        <li>subtotal</li>
-                                        <li>action</li>
-                                    </ul>
+                                   
                                     <div className="inner-cart__product product-cart">
                                         <div className="product-cart__details">
                                             <img src={item.image} alt="" className="product-cart__image" />
@@ -55,9 +57,10 @@ const CartContent = (props) => {
                                         </button>
                                     </div>
                                 </div>
+                                </> 
                             ))
                     }
-
+ 
                 </div>
             </div>
         </section>

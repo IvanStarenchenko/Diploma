@@ -1,5 +1,6 @@
 import './Header.scss'
 import fav from '../../img/header/svg/heart.svg'
+import { connect } from 'react-redux'
 import cart from '../../img/header/svg/cart.svg'
 import user from '../../img/header/svg/user.svg'
 import search from '../../img/header/svg/search.svg'
@@ -7,15 +8,34 @@ import logo from '../../img/header/Logo.png'
 import { NavLink } from 'react-router-dom'
 import HeaderReduxForm from './HeaderForm'
 import { useEffect, useState } from 'react'
-const Header = () => {
+const Header = (props) => {
     const headerLinkItems = [
         {
             links: ['Shop', 'Men', 'Women', 'Combos', 'Joggers'],
             path: ['/Main', '/Man', '/Woman', '/Woman', '/Man']
         }
     ]
+    const [cartCount , setCartCount] = useState(0)
+    const [favCount , setFavCount] = useState(0)
     const [activeLink, setActiveLink] = useState(false)
 
+    useEffect(() => {
+        if(Array.isArray(props.cartContent) && props.cartContent.length != 0) {
+            setCartCount(props.cartContent.length);
+        } else {
+            setCartCount(0);
+        }
+    }, [props.cartContent]);
+    
+
+    useEffect(() => {
+        if(Array.isArray(props.favoriteContent) && props.favoriteContent.length != 0) {
+            setFavCount(props.favoriteContent.length);
+        } else {
+            setFavCount(0);
+        }
+    }, [props.favoriteContent]);
+    
     return (
 
         <header>
@@ -44,9 +64,9 @@ const Header = () => {
                         </div>
 
                         <div className="navbar__actions actions-navbar">
-                            <NavLink className="actions-navbar__favorite"><img src={fav} alt="" /></NavLink>
+                            <NavLink className="actions-navbar__favorite" to = '/Profile/Wishlist'><img src={fav} alt="" /><span>{favCount === 0 ? <></> : favCount}</span></NavLink>
                             <NavLink className="actions-navbar__user" to="/Profile/Active"><img src={user} alt="" /></NavLink>
-                            <NavLink className="actions-navbar__cart" to="/Cart"><img src={cart} alt="" /></NavLink>
+                            <NavLink className="actions-navbar__cart" to="/Cart"><img src={cart} alt="" /><span>{cartCount === 0 ? <></> : cartCount}</span></NavLink>
                         </div>
 
                         <button className="burger">
@@ -58,4 +78,11 @@ const Header = () => {
         </header>
     )
 }
-export default Header
+const mapStateToProps = (state) => {
+    return {
+        cartContent: state.cart.cartContent,
+        favoriteContent: state.favorite.favoriteContent,
+    }
+}
+
+export default connect(mapStateToProps, {  })(Header)

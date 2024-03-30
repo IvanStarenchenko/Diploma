@@ -1,8 +1,8 @@
 const SET_ITEM = 'SET_ITEM';
 const DEL_ITEM = 'DEL_ITEM';
-const SET_SIZE = 'SET_SIZE';
 let initialState = {
   cartContent: [] , 
+  nextItemId: 1,
 }
 
 const cartReducer = (state = initialState, action) => {
@@ -12,30 +12,24 @@ const cartReducer = (state = initialState, action) => {
        return {
             ...state,
               cartContent: [...state.cartContent , 
-                {id: action.item.id ,
+                { 
+                id: state.nextItemId,
                 image: action.item.itemImageMain,
                 name: action.item.itemName, 
                 color: action.item.itemColor ,
                 size: action.item.itemSize , 
-                priceXS: action.item.itemPriceXS, 
-                priceS: action.item.itemPriceS, 
-                priceM: action.item.itemPriceM, 
-                priceL: action.item.itemPriceL, 
-                priceXL: action.item.itemPriceXL, 
+                price: action.item.itemPrice, 
                 count: 1 , 
                 subtotal: action.item.itemSubtotal }],
+                nextItemId: state.nextItemId + 1,
           };
       case DEL_ITEM:
        return {
             ...state,
             cartContent: state.cartContent.filter((item) => item.id !== action.item),
-
+            nextItemId: state.nextItemId - 1, 
           };
-      case SET_SIZE:
-       return {
-            ...state,
-            cartContent: state.cartContent.filter((item) => item.id !== action.item),
-          };
+     
 
       default:
             return state
@@ -59,12 +53,7 @@ export const deleteItemFromCart = (item) => {
   }
   
 
-export const changesSize = (size) => {
-  return{
-    type: SET_SIZE,
-    size
-  }
-}
+
   
 
 export default cartReducer;

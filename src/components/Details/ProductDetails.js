@@ -14,8 +14,8 @@ const Details = (props) => {
             <section className="block product-detail">
                 <div className="container">
                     <div className="product-detail__groups">
-                        <DetailsSlider product={props.product} />
-                        <DetailsAbout cartContent={props.cartContent} deleteItemFromCart={props.deleteItemFromCart} product={props.product} addItemToCart={props.addItemToCart} />
+                        <DetailsSlider product = {props.product}/>
+                        <DetailsAbout  changeProperty = {props.changeProperty} cartContent = {props.cartContent} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart}/>
                     </div>
                 </div>
             </section>

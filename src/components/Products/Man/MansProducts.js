@@ -7,11 +7,16 @@ import { getMenProducts } from '../../../redux/catalogReducer'
 import Filter from '../common/Filter'
 import Online from '../common/Online'
 import BestPrices from '../common/BestPrices'
-import Catalog from '../Catalog'
+import CatalogNew from '../CatalogNew'
+import CatalogRec from '../CatalogRec'
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 const MansProducts = (props) => {
+    const [isSwitched , setSwitch] = useState(false)
+    const [isNewActive , setActiveNew] = useState(true)
+    const [isRecActive , setActiveRec] = useState(false)
+
 
     useEffect(() => {
         props.getMenProducts(props.currentPage, props.pageSize)
@@ -34,14 +39,18 @@ const MansProducts = (props) => {
                         <div className="catalog-products__filter">Filter</div>
 
                         <div className="catalog-products__controls">
-                            <div className="catalog-products__new active" id="newBtn">New</div>
+                            <button onClick={() => {setSwitch(false); setActiveRec(false); setActiveNew(true)} } className={isNewActive ? "catalog-products__new active" : "catalog-products__new" }  id="newBtn">New</button>
 
-                            <div className="catalog-products__recommended" id="recommendedBtn">Recommended</div>
+                            <button onClick= {() => {setSwitch(true); setActiveRec(true); setActiveNew(false)}}className={isRecActive ? "catalog-products__recomended active" : "catalog-products__recomended" } id="recommendedBtn">Recommended</button>
                         </div>
                     </div>
 
                     <div className='products'>
-                        <Catalog items={props.products} />
+                        {isSwitched === false 
+                            ? <CatalogNew items ={props.products} />
+                            : <CatalogRec itemsRec ={props.productsRec} />
+
+                        }
 
                         {/* products = {products} */}
                     </div>
@@ -64,6 +73,7 @@ const MansProducts = (props) => {
 const mapStateToProps = (state) => {
     return {
         products: state.catalog.menProducts,
+        productsRec: state.catalog.menProductsRec,
         pageSize: state.catalog.pageSize,
         currentPage: state.catalog.currentPage,
         portionSize: state.catalog.portionSize,

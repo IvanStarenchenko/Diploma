@@ -1,24 +1,41 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const DetailsAbout = (props) => {
-    const [isAdded, setIsAdded] = useState(false)
+//   const [isSize , setActiveSize] = useState(false)
+    const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+    const colors = ['black', 'yellow', 'pink', 'red'];
 
+    const [activeSize, setActiveSize] = useState(null);
+    const [activeColor, setActiveColor] = useState(null);
     const { id } = useParams();
-    const selectedItem = props.product.find((item) => item.id === parseInt(id));
-    console.log(selectedItem.id)
-    if (!selectedItem) {
-        return <div>Товар не найден</div>;
-    }
-    const setItemToCart = (selectedItem) => {
-        props.addItemToCart(selectedItem)
-        setIsAdded(true)
-    };
 
+    const selectedItem = props.product.find((item) => item.id === parseInt(id));
+    const isItemInCart = props.cartContent.some(item => item.color === activeColor && item.size === activeSize);
+
+    if (!selectedItem) {
+        return <div>Товар не найден</div>
+    }
+
+
+    const setItemToCart = (selectedItem) => {
+        if (!isItemInCart) {
+            props.addItemToCart(selectedItem);
+        } 
+    };
     const delFromCart = (selectedItem) => {
         props.deleteItemFromCart(selectedItem.id)
-        setIsAdded(false)
     }
+    const handlePropertyChange = (newSize , newColor) => {
+        props.changeProperty(selectedItem.id , newSize , newColor )
+    }
+
+    const classSizeChange = (size) => {
+        setActiveSize(size);
+    };
+    const classColorChange = (color) => {
+        setActiveColor(color);
+    };
 
     return (
         <div className="product-detail__about about-product">
@@ -73,20 +90,29 @@ const DetailsAbout = (props) => {
                     <div className="size-product__guide">Size Guide</div>
                 </div>
                 <div className="size-product__sizes">
-                    <div id="xs">XS</div>
-                    <div id="s">S</div>
-                    <div id="m">M</div>
-                    <div id="l">L</div>
-                    <div id="xl">XL</div>
+                {sizes.map((size) => (
+                    <div
+                    key={size}
+                    className={activeSize === size  && 'size-active' }
+                    onClick={() =>{ classSizeChange(size) ; handlePropertyChange(size , selectedItem.itemColor)}}
+                    >
+                    {size}
+                    </div>
+                ))}
                 </div>
             </div>
             <div className="about-product__colours colours-product">
                 <h4 className="colours-product__title">Colours Available</h4>
                 <div className="colours-product__colours">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                {colors.map((color) => (
+                        <div
+                        key={color}
+                        className={activeColor === color  && 'color-active'}
+                        onClick={() =>{ classColorChange(color) ; handlePropertyChange(selectedItem.itemSize ,color)}}
+                        >
+                        {color}
+                        </div>
+                ))}
                 </div>
             </div>
             <div className="about-product__buttons buttons-product">
@@ -96,13 +122,13 @@ const DetailsAbout = (props) => {
                             <path d="M2.5 3.33334H3.00526C3.85578 3.33334 4.56986 3.97375 4.6621 4.81926L5.3379 11.0141C5.43014 11.8596 6.14422 12.5 6.99474 12.5H14.205C14.9669 12.5 15.6317 11.9834 15.82 11.2452L16.9699 6.73592C17.2387 5.68212 16.4425 4.65741 15.355 4.65741H5.5M5.52063 15.5208H6.14563M5.52063 16.1458H6.14563M14.6873 15.5208H15.3123M14.6873 16.1458H15.3123M6.66667 15.8333C6.66667 16.2936 6.29357 16.6667 5.83333 16.6667C5.3731 16.6667 5 16.2936 5 15.8333C5 15.3731 5.3731 15 5.83333 15C6.29357 15 6.66667 15.3731 6.66667 15.8333ZM15.8333 15.8333C15.8333 16.2936 15.4602 16.6667 15 16.6667C14.5398 16.6667 14.1667 16.2936 14.1667 15.8333C14.1667 15.3731 14.5398 15 15 15C15.4602 15 15.8333 15.3731 15.8333 15.8333Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                         </svg>
                     </div>
-                    {!isAdded
+                    {!isItemInCart
                         ? <button onClick={() => setItemToCart(selectedItem)}>Add to cart</button>
-                        : <button onClick={() => delFromCart(selectedItem)} className="disabled">Added!</button>
+                        : <button onClick={() => delFromCart(selectedItem)} className="disabled">Remove from cart</button>
                     }
                 </button>
                 <div className="buttons-product__price">
-                    <span id="xsPrice">{selectedItem && selectedItem.itemPriceXS}</span>
+                    <span id="xsPrice">{selectedItem && selectedItem.itemPrice}</span>
                 </div>
             </div>
             <div className="about-product__advantages advantages-product">

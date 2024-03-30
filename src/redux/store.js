@@ -4,6 +4,7 @@ import authReducer from "./auth-reducer";
 import profileReducer from "./profileReducer";
 import productsReducer from "./productsReducer";
 import cartReducer from "./cartReducer";
+import favoriteReducer from "./favoriteReducer";
 import  thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
 import personalInfoReducer from "./infoReducer";
@@ -16,6 +17,7 @@ let reducers = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   cart: cartReducer,
+  favorite: favoriteReducer,
 });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; 
 const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
