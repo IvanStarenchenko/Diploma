@@ -300,25 +300,17 @@
         }
 
         .wishlist-inner {
-            &__group {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-                justify-items: center;
-                gap: 50px;
-            }
-
             &__block {
                 position: relative;
                 display: grid;
                 grid-template-columns: 1fr;
                 gap: 10px;
                 width: 100%;
-                max-width: 350px;
                 justify-items: center;
                 border: 1px solid #EDEEF2;
                 border-radius: 16px;
                 padding-inline: clamp(1rem, 0.598rem + 2.01vw, 1.563rem);
-                padding-block: 20px;
+                padding-block: 40px 20px;
             }
 
             &__button {
