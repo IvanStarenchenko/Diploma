@@ -43,7 +43,7 @@ const CartContent = (props) => {
                                                     <div className="product-cart__siZe">Size : {item.size}</div>
                                                 </div>
                                             </div>
-                                            <div className="product-cart__price" id="blue-flower-print-crop-top-price">{item.priceS}</div>
+                                            <div className="product-cart__price" id="blue-flower-print-crop-top-price">{item.price}</div>
                                             <div className="product-cart__quantiy">
                                                 <button id="decrement">-</button>
                                                 <div id="counter">1</div>
