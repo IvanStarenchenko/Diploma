@@ -13,18 +13,25 @@ const CartContent = (props) => {
         if (updatedItem && updatedItem.count < 9) {
             updatedItem.count += 1;
             updatedItem.subtotal = updatedItem.price * updatedItem.count;
+            const subtotalChange =  updatedItem.price ;
+            props.increaseSummury(subtotalChange); // Передаем только числовое значение subtotal
             props.updateItemInCart(updatedItem);
+            // ХОТЕЛ ДОБАВИТЬ ВЫЗОВ ФУНКЦИИ ЧЕРЕЗ КНОПКУ ДОБАВЛЕНИЯ В КОРЗИНУ И ПЕРЕДАТЬ СУММУ
         }
     };
+    
     
     const decreaseCounter = (item) => {
         const updatedItem = props.cartContent.find(cartItem => cartItem.id === item.id);
         if (updatedItem && updatedItem.count > 1) {
+            const previousCount = updatedItem.count;
             updatedItem.count -= 1;
-            updatedItem.subtotal = updatedItem.price * updatedItem.count;
+            const subtotalChange = updatedItem.price * (previousCount - updatedItem.count);
+            props.decreaseSummury(subtotalChange);
             props.updateItemInCart(updatedItem);
         }
     };
+    
     return (
         <section className="block cart">
             <div className="container">
