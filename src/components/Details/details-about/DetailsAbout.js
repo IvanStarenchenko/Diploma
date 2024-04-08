@@ -21,10 +21,14 @@ const DetailsAbout = (props) => {
     const setItemToCart = (selectedItem) => {
         if (!isItemInCart) {
             props.addItemToCart(selectedItem);
+            props.increaseSummury(selectedItem.itemPrice)
         } 
     };
     const delFromCart = (selectedItem) => {
-        props.deleteItemFromCart(selectedItem.id)
+        if(isItemInCart){
+            props.deleteItemFromCart(selectedItem.id)
+            props.decreaseSummury(selectedItem.itemPrice)
+        }
     }
     const handlePropertyChange = (newSize , newColor) => {
         props.changeProperty(selectedItem.id , newSize , newColor )
@@ -123,8 +127,8 @@ const DetailsAbout = (props) => {
                         </svg>
                     </div>
                     {!isItemInCart
-                        ? <button onClick={() => setItemToCart(selectedItem)}>Add to cart</button>
-                        : <button onClick={() => delFromCart(selectedItem)} className="disabled">Remove from cart</button>
+                        ? <button onClick={() => setItemToCart(selectedItem) }>Add to cart</button>
+                        : <button onClick={() => delFromCart(selectedItem) } className="disabled">Remove from cart</button>
                     }
                 </button>
                 <div className="buttons-product__price">

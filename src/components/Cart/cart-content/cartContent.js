@@ -5,9 +5,12 @@ import { NavLink } from 'react-router-dom'
 const CartContent = (props) => {
     const cartItemId = props.cartContent.id
     const deleteItem = (cartItemId) => {
-        props.deleteItemFromCart(cartItemId)
+        if(cartItemId){
+            props.deleteItemFromCart(cartItemId)
+            
+        }
     }
-    const initialPrice = props.cartContent.length > 0 ? parseFloat(props.cartContent.price) : 0;
+    // const initialPrice = props.cartContent.length > 0 ? parseFloat(props.cartContent.price) : 0;
     const increaseCounter = (item) => {
         const updatedItem = props.cartContent.find(cartItem => cartItem.id === item.id);
         if (updatedItem && updatedItem.count < 9) {
@@ -26,6 +29,7 @@ const CartContent = (props) => {
         if (updatedItem && updatedItem.count > 1) {
             const previousCount = updatedItem.count;
             updatedItem.count -= 1;
+            updatedItem.subtotal = updatedItem.price * updatedItem.count;
             const subtotalChange = updatedItem.price * (previousCount - updatedItem.count);
             props.decreaseSummury(subtotalChange);
             props.updateItemInCart(updatedItem);

@@ -1,6 +1,6 @@
 import React, { useEffect,useRef } from 'react';
 import { getProducts } from "../../redux/productsReducer"
-import { addItemToCart , deleteItemFromCart} from '../../redux/cartReducer';
+import { addItemToCart , deleteItemFromCart , increaseSummury , decreaseSummury} from '../../redux/cartReducer';
 import { changeProperty} from '../../redux/catalogReducer';
 import { useParams} from 'react-router-dom';
 import { compose } from 'redux';
@@ -13,7 +13,7 @@ const DetailsContainer = (props) => {
 
     
     return(
-       <Details changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
+       <Details decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
     )
 }
 
@@ -25,7 +25,7 @@ let mapStateToProps = (state) => {
   }
 
 export default compose(
-    connect(mapStateToProps , {getProducts , addItemToCart , deleteItemFromCart , changeProperty}),
+    connect(mapStateToProps , {getProducts , addItemToCart , deleteItemFromCart , changeProperty , increaseSummury , decreaseSummury}),
   )(DetailsContainer);  
 
 
