@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const DetailsAbout = (props) => {
+    
 //   const [isSize , setActiveSize] = useState(false)
     const sizes = ['XS', 'S', 'M', 'L', 'XL'];
     const colors = ['black', 'yellow', 'pink', 'red'];
@@ -9,13 +10,15 @@ const DetailsAbout = (props) => {
     const [activeSize, setActiveSize] = useState(null);
     const [activeColor, setActiveColor] = useState(null);
     const { id } = useParams();
+    console.log(props.product)
 
-    const selectedItem = props.product.find((item) => item.id === parseInt(id));
-    const isItemInCart = props.cartContent.some(item => item.color === activeColor && item.size === activeSize);
+    const selectedItem = props.productById;
+    const isItemInCart = props.cartContent.some(item => item.color === activeColor ); //&& item.size === activeSize
+    console.log(props.cartContent)
 
-    if (!selectedItem) {
-        return <div>Товар не найден</div>
-    }
+    // if (!selectedItem) {
+    //     return <div>Товар не найден</div>
+    // }
 
 
     const setItemToCart = (selectedItem) => {
@@ -49,7 +52,7 @@ const DetailsAbout = (props) => {
                 <a href="#">Top</a>
             </div>
 
-            <h3 className="about-product__title">{selectedItem && selectedItem.itemName}</h3>
+            <h3 className="about-product__title">{props.productById.productName}</h3>
             {/* {product.productName} */}
             <div className="about-product__rating rating-product">
                 <div className="rating-product__stars">
@@ -132,7 +135,7 @@ const DetailsAbout = (props) => {
                     }
                 </button>
                 <div className="buttons-product__price">
-                    <span id="xsPrice">{selectedItem && selectedItem.itemPrice}</span>
+                    <span id="xsPrice">{props.productById.price}</span>
                 </div>
             </div>
             <div className="about-product__advantages advantages-product">

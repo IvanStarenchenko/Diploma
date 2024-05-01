@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 const CartCheckout = (props) => {
+    const [zeroing , setZeroing] = useState(0)
+
+    
     return (
         <>
             <section className="checkout">
@@ -27,7 +31,7 @@ const CartCheckout = (props) => {
                             </div>
                             <div className="price-inner__item">
                                 <div className="price-inner__title">Sub Total</div>
-                                <div className="price-inner__total">{props.summury}</div>
+                                <div className="price-inner__total">{props.summury }</div>
                             </div>
                             <div className="price-inner__button"><NavLink to={'/CheckOut'}>Proceed To Checkout</NavLink></div>
                         </div>

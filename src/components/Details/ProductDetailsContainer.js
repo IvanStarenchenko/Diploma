@@ -13,14 +13,16 @@ const DetailsContainer = (props) => {
 
     
     return(
-       <Details decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
+       <Details productById = {props.productById} decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
     )
 }
 
 let mapStateToProps = (state) => {
     return{
       product: state.catalog.menProducts,
+      productById: state.catalog.product,
       cartContent: state.cart.cartContent,
+      
     }
   }
 

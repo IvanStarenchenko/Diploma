@@ -15,7 +15,7 @@ const Details = (props) => {
                 <div className="container">
                     <div className="product-detail__groups">
                         <DetailsSlider product = {props.product}/>
-                        <DetailsAbout decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} cartContent = {props.cartContent} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart}/>
+                        <DetailsAbout productById = {props.productById} decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} cartContent = {props.cartContent} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart}/>
                     </div>
                 </div>
             </section>
@@ -23,14 +23,14 @@ const Details = (props) => {
             <section className="block product-description">
                 <div className="container">
                     <h3 className="product-description__title title">Product Description</h3>
-                    <DetailsDescription />
+                    <DetailsDescription productById = {props.productById}/>
                 </div>
             </section>
 
             <section className="block product-similar">
                 <div className="container">
                     <h3 className="product-similar__title title">Similar Products</h3>
-                    <DetailsSimilar />
+                    <DetailsSimilar productById = {props.productById} product = {props.product} />
                 </div>
             </section>
         </>

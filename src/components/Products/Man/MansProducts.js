@@ -19,12 +19,12 @@ const MansProducts = (props) => {
 
 
     useEffect(() => {
-        props.getMenProducts(props.currentPage, props.pageSize)
+        props.getMenProducts('Men')
     }, {})
 
-    const onPageChanged = (currentPage) => {
-        props.getMenProducts(currentPage, props.pageSize)
-    }
+    // const onPageChanged = (currentPage) => {
+    //     props.getMenProducts(currentPage, props.pageSize)
+    // }
     return (
         <div className="container ">
             <section className="block catalog">

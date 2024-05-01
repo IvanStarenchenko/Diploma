@@ -45,10 +45,10 @@ const DetailsSimilar = (props) => {
 
                     <div className="card-content__content">
                         <div className="card-content__text">
-                            <div className="card-content__name">{item.itemName}</div>
-                            <div className="card-content__brand">{item.itemBrand}</div>
+                            <div className="card-content__name">{item.productName}</div>
+                            <div className="card-content__brand">{item.manufacturer}</div>
                         </div>
-                        <div className="card-content__price">{item.itemPrice}</div>
+                        <div className="card-content__price">{item.price}</div>
                     </div>
                 </div>
             ))}

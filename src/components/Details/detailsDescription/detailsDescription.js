@@ -1,5 +1,5 @@
 import descr from '../../../img/details/descr.png'
-const DetailsDescription = () =>{
+const DetailsDescription = (props) =>{
     return(
         <>
             <div className="product-description__inner">
@@ -11,7 +11,7 @@ const DetailsDescription = () =>{
                     </div>
                     <div className="content-product__main">
                         <div className="content-product__description description-inner" id="description">
-                            <p className="description-inner__text">100% Bio-washed Cotton – makes the fabric extra soft & silky. Flexible ribbed crew neck. Precisely stitched with no pilling & no fading. Provide  all-time comfort. Anytime, anywhere. Infinite range of matte-finish HD prints.</p>
+                            <p className="description-inner__text">{props.productById.description}</p>
                             <div className="description-inner__table table-description">
                                 <div className="table-description__item">
                                     <div className="table-description__overtitle">Fabric</div>

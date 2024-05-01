@@ -19,6 +19,7 @@ const Wishlist = (props) => {
     const deleteItem = (favItemId) => {
         props.deleteItemFromFav(favItemId)
     }
+    // console.log(props.favoriteContent)
     return(
         <>          
         <div className='account'>

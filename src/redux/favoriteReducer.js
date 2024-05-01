@@ -11,20 +11,21 @@ const favoriteReducer = (state = initialState, action) => {
        return {
             ...state,
             favoriteContent: [...state.favoriteContent , 
-                {id: action.item.id ,
-                image: action.item.itemImageMain,
-                name: action.item.itemName, 
+                {id: action.item.productId ,
+                image: action.item.photo,
+                name: action.item.productName, 
                 color: action.item.itemColor ,
                 size: action.item.itemSize , 
-                price: action.item.itemPrice, 
+                price: action.item.price, 
                 count: 1 , 
-                subtotal: action.item.itemSubtotal }],
+                subtotal: action.item.price }],
           };
       case DEL_ITEM_FAV:
        return {
             ...state,
-            favoriteContent: state.favoriteContent.filter((item) => item.id !== action.item),
-
+            favoriteContent: state.favoriteContent.filter(
+              (item) => item.id !== action.itemId
+          ),
           };
      
 
@@ -41,10 +42,10 @@ export const addItemToFav = (item) => {
     
   }
   
-export const deleteItemFromFav = (item) => {
+export const deleteItemFromFav = (itemId) => {
     return {
       type: DEL_ITEM_FAV,
-      item,
+      itemId,
     }
     
   }
