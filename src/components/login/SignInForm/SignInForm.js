@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom"
 import { Field, reduxForm } from "redux-form"
 import { required , maxLenghtCreator} from "../../../utils/validators"
 import {Input} from '../../Common/FormsControls/FormsControls'
-const SignInForm = () => {
+const SignInForm = ({handleSubmit}) => {
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
         <div className="inner-sign__email sign-in__email">
             <label for="email"> User name or email address </label>                      
             <Field className="inner-sign__input" id="email" type="email" name={"email"} component={Input}/>

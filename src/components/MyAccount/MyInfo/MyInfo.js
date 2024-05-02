@@ -32,7 +32,7 @@ const MyInfo = ({personalInfo , changePersonalInfo}) => {
                         <div className="contacts-inner__block">
                             <label>
                                 <p>Your Name</p>
-                                <div>{personalInfo.name}</div>
+                                <div>{personalInfo.firstName} {personalInfo.lastName}</div>
                             </label>
                         </div>
                         <div className="contacts-inner__block">
@@ -167,7 +167,7 @@ const MyInfo = ({personalInfo , changePersonalInfo}) => {
 
 const mapStateToProps = (state) => {
     return{
-        personalInfo: state.personalInfo.personalData
+        personalInfo: state.auth.userProfile
     }
 }
 export default connect(mapStateToProps , {changePersonalInfo})(MyInfo)
