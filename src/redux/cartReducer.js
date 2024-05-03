@@ -14,7 +14,6 @@ const cartReducer = (state = initialState, action) => {
     switch (action.type){
      
       case SET_ITEM:
-        console.log(action.item)
         return {
           ...state,
           cartContent: [
@@ -23,8 +22,8 @@ const cartReducer = (state = initialState, action) => {
               id: state.nextItemId,
               image: action.item.photo,
               name: action.item.productName, 
-              color: action.item.itemColor ,
-              size: action.item.itemSize , 
+              color: action.item.color ,
+              size: action.item.size , 
               price: action.item.price, 
               count: 1, // Устанавливаем начальное значение количества товара в 1
               subtotal: action.item.price // Инициализируем subtotal ценой товара

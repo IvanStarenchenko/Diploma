@@ -10,11 +10,9 @@ const DetailsAbout = (props) => {
     const [activeSize, setActiveSize] = useState(null);
     const [activeColor, setActiveColor] = useState(null);
     const { id } = useParams();
-    console.log(props.product)
-
+    console.log(id)
     const selectedItem = props.productById;
-    const isItemInCart = props.cartContent.some(item => item.color === activeColor ); //&& item.size === activeSize
-    console.log(props.cartContent)
+    const isItemInCart = props.cartContent.some(item => item.color === activeColor && item.size === activeSize); //
 
     // if (!selectedItem) {
     //     return <div>Товар не найден</div>
@@ -27,23 +25,25 @@ const DetailsAbout = (props) => {
             props.increaseSummury(selectedItem.itemPrice)
         } 
     };
-    const delFromCart = (selectedItem) => {
+    const delFromCart = (selectedItem , id) => {
         if(isItemInCart){
-            props.deleteItemFromCart(selectedItem.id)
-            props.decreaseSummury(selectedItem.itemPrice)
+            props.deleteItemFromCart(id)
+            props.decreaseSummury(selectedItem.price)
         }
     }
-    const handlePropertyChange = (newSize , newColor) => {
-        props.changeProperty(selectedItem.id , newSize , newColor )
-    }
-
     const classSizeChange = (size) => {
         setActiveSize(size);
     };
+    
     const classColorChange = (color) => {
         setActiveColor(color);
     };
 
+    const handlePropertyChange = (id , newSize , newColor) => {
+        props.changeProperty(id , newSize , newColor )
+    }
+
+ 
     return (
         <div className="product-detail__about about-product">
             <div className="about-product__navigation">
@@ -101,7 +101,7 @@ const DetailsAbout = (props) => {
                     <div
                     key={size}
                     className={activeSize === size  && 'size-active' }
-                    onClick={() =>{ classSizeChange(size) ; handlePropertyChange(size , selectedItem.itemColor)}}
+                    onClick={() =>{ classSizeChange(size) ; handlePropertyChange(id , size , selectedItem.color)}}
                     >
                     {size}
                     </div>
@@ -115,7 +115,7 @@ const DetailsAbout = (props) => {
                         <div
                         key={color}
                         className={activeColor === color  && 'color-active'}
-                        onClick={() =>{ classColorChange(color) ; handlePropertyChange(selectedItem.itemSize ,color)}}
+                        onClick={() =>{ classColorChange(color) ; handlePropertyChange(id , selectedItem.size , color)}}
                         >
                         {color}
                         </div>
@@ -131,7 +131,7 @@ const DetailsAbout = (props) => {
                     </div>
                     {!isItemInCart
                         ? <button onClick={() => setItemToCart(selectedItem) }>Add to cart</button>
-                        : <button onClick={() => delFromCart(selectedItem) } className="disabled">Remove from cart</button>
+                        : <button onClick={() => delFromCart(selectedItem , id) } className="disabled">Remove from cart</button>
                     }
                 </button>
                 <div className="buttons-product__price">

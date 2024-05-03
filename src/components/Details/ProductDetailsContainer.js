@@ -13,7 +13,7 @@ const DetailsContainer = (props) => {
 
     
     return(
-       <Details productById = {props.productById} decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
+       <Details getNewProperties = {props.getNewProperties} productById = {props.productById} decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
     )
 }
 
@@ -27,7 +27,7 @@ let mapStateToProps = (state) => {
   }
 
 export default compose(
-    connect(mapStateToProps , {getProducts , addItemToCart , deleteItemFromCart , changeProperty , increaseSummury , decreaseSummury}),
+    connect(mapStateToProps , {getProducts , addItemToCart , deleteItemFromCart ,changeProperty , increaseSummury , decreaseSummury}),
   )(DetailsContainer);  
 
 
