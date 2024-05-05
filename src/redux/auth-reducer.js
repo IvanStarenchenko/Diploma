@@ -3,14 +3,14 @@ import { profileAPI , loginAPI } from '../api/Api';
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_LOGIN_USER_PROFILE = 'SET_LOGIN_USER_PROFILE';
-
+const accessToken = localStorage.getItem('accessToken');
+const refreshToken = localStorage.getItem('refreshToken');
 const initialState = {
     isLogin: false,
     email: null,
-    token: null,
-    userProfile: null
-};
+    userProfile:null,
 
+};
 
 
 const authReducer = (state = initialState, action) => {
@@ -18,13 +18,10 @@ const authReducer = (state = initialState, action) => {
         case SET_AUTH_USER_DATA:
             return {
                 ...state,
-                isAuth: true,
+                isLogin: action.isLogin,
                 email: action.email,
-                token: action.token,
-              
             };
         case SET_LOGIN_USER_PROFILE:
-            console.log(action.profile)
             return {
                 ...state,
                 userProfile: action.profile,
@@ -35,10 +32,11 @@ const authReducer = (state = initialState, action) => {
 };
 
 
-export const setAuthUserData = (token, email) => ({
+export const setAuthUserData = (token, email , isLogin) => ({
     type: SET_AUTH_USER_DATA,
     token,
     email,
+    isLogin,
 });
 
 export const setLoginUserProfile = (profile) => ({
@@ -48,25 +46,44 @@ export const setLoginUserProfile = (profile) => ({
 
 
 
-export const getMyselfAuthData = (email, password) => async (dispatch) => {
+export const setNewAcc = (email, password, confirm) => async (dispatch) => {
     try {
         // Аутентифицируем пользователя
-        let response = await loginAPI.login(email, password);
+        let response = await loginAPI.registration(email, password , confirm);
         if (response.data) {
-            // Если аутентификация прошла успешно, получаем accessToken и refreshToken
-            const { accessToken, refreshToken } = response.data;
-
-            // Сохраняем токены в локальное хранилище (или где-то еще по вашему выбору)
-            localStorage.setItem('accessToken', accessToken);
-            localStorage.setItem('refreshToken', refreshToken);
-
-            // Задаем авторизационные данные в глобальном состоянии
-            dispatch(setAuthUserData(accessToken, email));
-
-            // Получаем профиль пользователя
+            
             let responseUser = await profileAPI.getProfile();
             if (responseUser.data) {
                 // Если запрос прошел успешно, сохраняем данные профиля в глобальном состоянии
+                dispatch(setLoginUserProfile(responseUser.data));
+            } else {
+                console.error('Empty response from profile API:', responseUser);
+            }
+        } else {
+            console.error('Unexpected response structure:', response);
+        }
+    } catch (error) {
+        console.error('Ошибка аутентификации:', error);
+    }
+};
+
+
+export const getMyselfAuthData = (email, password) => async (dispatch) => {
+    try {
+        let response = await loginAPI.login(email, password);
+        console.log(response)
+        if (response.data) {
+            const { accessToken, refreshToken } = response.data;
+
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+          
+            dispatch(setAuthUserData(accessToken, email , true));
+
+            let responseUser = await profileAPI.getProfile();
+            if (responseUser.data) {
+                console.log(responseUser.data)
+
                 dispatch(setLoginUserProfile(responseUser.data));
             } else {
                 console.error('Empty response from profile API:', responseUser);
@@ -85,26 +102,30 @@ export const getMyselfAuthData = (email, password) => async (dispatch) => {
 
 
 
-export const login = (email, password) => async (dispatch) =>
-{
-    let responce = await loginAPI.login(email, password);
-    if (responce.data.resultCode === 0) {
+export const login = (email, password) => async (dispatch) => {
+    const response = await loginAPI.login(email, password);
+    if (response.data.resultCode === 0) {
+        const newAccessToken = response.data.accessToken; // Предполагается, что токен возвращается в ответе
+        localStorage.setItem('accessToken', newAccessToken); // Сохраняем новый токен
+
+        // Обновляем состояние аутентификации
         dispatch(getMyselfAuthData());
+    } else {
+        const message = response.data.messages.length > 0 ? response.data.messages[0] : "Incorrect email or password";
+        const action = stopSubmit("login", { _error: message });
+        dispatch(action);
     }
-    else {
-        let message = responce.data.messages.length > 0 ? responce.data.messages[0] : "Incorrect email or sosi";
-            let action = stopSubmit("login" , {_error: message})
-            dispatch(action)   
-    }
-}
+};
+
 
 export const logout = () => async (dispatch) =>
-{
-    let responce = await loginAPI.logout()
-    if (responce.data.resultCode === 0) {
-        dispatch(setAuthUserData(null , null , null));
+    {
+        dispatch(setAuthUserData(null , null , false ));
+
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+       
     }
-}
 
 
 export default authReducer;

@@ -6,8 +6,7 @@ const CartContent = (props) => {
     const cartItemId = props.cartContent.id
     const deleteItem = (cartItemId) => {
         if(cartItemId){
-            props.deleteItemFromCart(cartItemId)
-            
+            props.deleteItemFromCart(cartItemId) 
         }
     }
     // const initialPrice = props.cartContent.length > 0 ? parseFloat(props.cartContent.price) : 0;

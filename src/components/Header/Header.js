@@ -35,9 +35,8 @@ const Header = (props) => {
             setFavCount(0);
         }
     }, [props.favoriteContent]);
-    
+    const { isLogin } = props;
     return (
-
         <header>
             <div className="header">
                 <div className="container">
@@ -64,9 +63,18 @@ const Header = (props) => {
                         </div>
 
                         <div className="navbar__actions actions-navbar">
-                            <NavLink className="actions-navbar__favorite" to = '/Profile/Wishlist'><img src={fav} alt="" /><span>{favCount === 0 ? <></> : favCount}</span></NavLink>
-                            <NavLink className="actions-navbar__user" to="/Profile/Active"><img src={user} alt="" /></NavLink>
-                            <NavLink className="actions-navbar__cart" to="/Cart"><img src={cart} alt="" /><span>{cartCount === 0 ? <></> : cartCount}</span></NavLink>
+                            { !isLogin
+                                ?<div className='authorithation'>
+                                    <NavLink to="/SignIn"><button className='login'>LogIn</button></NavLink>
+                                    <NavLink to="/SignUp"><button className='signup'>Sign Up</button></NavLink>
+                                 </div>
+                                :<div className='actions-navbar__in'>
+                                <NavLink className="actions-navbar__favorite actions-item" to = '/Profile/Wishlist'><img src={fav} alt="" /><span>{favCount === 0 ? <></> : favCount}</span></NavLink>
+                                <NavLink className="actions-navbar__user actions-item" to="/Profile/Active"><img src={user} alt="" /></NavLink>
+                                <NavLink className="actions-navbar__cart actions-item" to="/Cart"><img src={cart} alt="" /><span>{cartCount === 0 ? <></> : cartCount}</span></NavLink>
+                                </div>
+                            }
+                           
                         </div>
 
                         <button className="burger">
@@ -78,10 +86,12 @@ const Header = (props) => {
         </header>
     )
 }
+
 const mapStateToProps = (state) => {
     return {
         cartContent: state.cart.cartContent,
         favoriteContent: state.favorite.favoriteContent,
+        isLogin: state.auth.isLogin,
     }
 }
 

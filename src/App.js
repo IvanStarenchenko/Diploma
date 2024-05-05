@@ -56,7 +56,6 @@ class App extends React.Component {
               <Route path='/Profile/Completed' element={<Completed />} />
               <Route path='/Profile/MyInfo' element={<MyInfo />} />
               <Route path='/Profile/Wishlist' element={<Wishlist />} />
-              <Route path='/Profile/SignIn' element={<SignIn />} />
               <Route path="*" element={<div>404 NOT FOUND</div>} />
               {/* Добавь другие маршруты здесь */}
             </Routes>

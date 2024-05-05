@@ -1,7 +1,15 @@
 import '../sign/sign-up.scss'
 import SignUpReduxForm from './SignUpForm'
 import signUp from '../../../img/sign/up/up.png'
-const SignUp = () => {
+import { connect } from 'react-redux'
+import { setNewAcc } from '../../../redux/auth-reducer'
+
+
+const SignUp = ({setNewAcc}) => {
+    const onSubmit = (value) => {  
+        console.log(value)
+        setNewAcc(value.email , value.password , value.confirm)    
+   }
     return(
         <div className="sign__inner inner-sign">
             <img src={signUp} className="inner-sign__image" alt=""/>
@@ -16,7 +24,7 @@ const SignUp = () => {
                         <button className="inner-sign__twitter"><span>Continue With Twitter</span></button>
                     </div>
                     <div className="sign-up__form">
-                       <SignUpReduxForm />
+                       <SignUpReduxForm onSubmit = {onSubmit}/>
                     </div>
                     <a href="sign-in.html" className="inner-sign__login">Already have an  account? Log in</a>
                 </div>
@@ -25,4 +33,9 @@ const SignUp = () => {
     )
 }
 
-export default SignUp
+const mapStateToProps = (state) =>{
+    return{
+        isLogin: state.auth.isLogin
+    }
+}
+export default connect( mapStateToProps, {setNewAcc})(SignUp);

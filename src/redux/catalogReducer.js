@@ -135,9 +135,22 @@ export const setProduct = (productById) => {
 
 
 export const getProductById = (productId) => async (dispatch) => {
-  let response = await productsAPI.getProductById(productId);
-  dispatch(setProduct(response.data))
-}
+  try {
+      let response = await productsAPI.getProductById(productId);
+      dispatch(setProduct(response.data));
+  } catch (error) {
+      if (error.response && error.response.status === 401) {
+          console.warn('Authorization error:', error);
+ 
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          
+          
+      }
+      return Promise.resolve(null);
+  }
+};
+
 
 export const getMenProducts = () => async (dispatch) => {
   try {

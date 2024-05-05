@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
-
+import { logout } from "../../redux/auth-reducer"
 const Aside = (props) => {
     return(
         <div className="account__aside aside-inner">
@@ -10,7 +10,7 @@ const Aside = (props) => {
                         <div>Personal Info</div>
                     </div>
                         <div className="aside-inner__welcome">
-                        <h3 className="aside-inner__name">Hello {props.personalInfo.name || 'User'}</h3>
+                        <h3 className="aside-inner__name">Hello {props.personalInfo.firstName || 'User'}</h3>
                             <p className="aside-inner__text">Welcome to your Account</p>
                         </div>
                         <nav className="aside-inner__nav">
@@ -37,7 +37,7 @@ const Aside = (props) => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
                                         <path d="M14.6667 15.5833L19.25 11M19.25 11L14.6667 6.41667M19.25 11H8.25M8.25 2.75H7.15C5.60986 2.75 4.83978 2.75 4.25153 3.04973C3.73408 3.31338 3.31338 3.73408 3.04973 4.25153C2.75 4.83978 2.75 5.60986 2.75 7.15V14.85C2.75 16.3901 2.75 17.1602 3.04973 17.7485C3.31338 18.2659 3.73408 18.6866 4.25153 18.9503C4.83978 19.25 5.60986 19.25 7.15 19.25H8.25" stroke="#807D7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
-                                    <NavLink to = {'/Profile/SignIn'}>Sign In</NavLink> 
+                                    <NavLink to = {'/Main'}><button onClick={() => props.logout(null, null, false)}>Sign Out</button></NavLink> 
                                 </li>
                             </ul>
                         </nav>
@@ -46,7 +46,7 @@ const Aside = (props) => {
 }
 const mapStateToProps = (state) => {
     return{
-        personalInfo: state.personalInfo.personalData
+        personalInfo: state.auth.userProfile
     }
 }
-export default connect(mapStateToProps , {})(Aside)
+export default connect(mapStateToProps , {logout})(Aside)

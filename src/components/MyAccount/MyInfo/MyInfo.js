@@ -49,12 +49,6 @@ const MyInfo = ({personalInfo , changePersonalInfo}) => {
                         </div>
                         <div className="contacts-inner__block">
                             <label>
-                                <p>Password</p>
-                                <div>{personalInfo.password}</div>
-                            </label>
-                        </div>
-                        <div className="contacts-inner__block">
-                            <label>
                                 <p>Country</p>
                                 <div>{personalInfo.country}</div>
                             </label>
@@ -62,7 +56,7 @@ const MyInfo = ({personalInfo , changePersonalInfo}) => {
                         <div className="contacts-inner__block">
                             <label>
                                 <p>Street Adress</p>
-                                <div>{personalInfo.streetAdress}</div>
+                                <div>{personalInfo.streetAddress}</div>
                             </label>
                         </div>
                         <div className="contacts-inner__block">

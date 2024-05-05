@@ -111,7 +111,7 @@
         align-items: center;
         column-gap: 12px;
 
-        a {
+        .actions-item {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -122,6 +122,38 @@
             background: #F6F6F6;
             cursor: pointer;
         }
+    }
+
+    .authorithation{
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        button{
+            font-weight: 500;
+            font-size: 18px;
+        }
+    }
+    .login{
+        border-radius: 8px;
+        padding: 12px, 48px, 12px, 48px;
+        background-color: #8A33FD;
+        color: #fff;
+        height: 44px;
+        width: 136px;
+
+
+    }
+    .signup{
+        color: #8A33FD;
+        padding: 12px, 48px, 12px, 48px;
+        border-radius: 8px;
+        border: 1px solid #8A33FD;
+        height: 44px;
+        width: 136px;
+    }
+    .actions-navbar__in{
+        display: flex;
+        column-gap: 10px;
     }
 
     // ========================= [ Burger styles ] =========================

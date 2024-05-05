@@ -10,14 +10,10 @@ const DetailsAbout = (props) => {
     const [activeSize, setActiveSize] = useState(null);
     const [activeColor, setActiveColor] = useState(null);
     const { id } = useParams();
-    console.log(id)
     const selectedItem = props.productById;
     const isItemInCart = props.cartContent.some(item => item.color === activeColor && item.size === activeSize); //
 
-    // if (!selectedItem) {
-    //     return <div>Товар не найден</div>
-    // }
-
+  
 
     const setItemToCart = (selectedItem) => {
         if (!isItemInCart) {
@@ -26,6 +22,7 @@ const DetailsAbout = (props) => {
         } 
     };
     const delFromCart = (selectedItem , id) => {
+        console.log(id)
         if(isItemInCart){
             props.deleteItemFromCart(id)
             props.decreaseSummury(selectedItem.price)
@@ -135,7 +132,7 @@ const DetailsAbout = (props) => {
                     }
                 </button>
                 <div className="buttons-product__price">
-                    <span id="xsPrice">{props.productById.price}</span>
+                    <span id="xsPrice">{props.productById.price}$</span>
                 </div>
             </div>
             <div className="about-product__advantages advantages-product">

@@ -14,12 +14,15 @@ const cartReducer = (state = initialState, action) => {
     switch (action.type){
      
       case SET_ITEM:
+        console.log(state.nextItemId)
+
         return {
           ...state,
           cartContent: [
             ...state.cartContent,
             { 
               id: state.nextItemId,
+              itemId: action.id,
               image: action.item.photo,
               name: action.item.productName, 
               color: action.item.color ,
@@ -34,9 +37,10 @@ const cartReducer = (state = initialState, action) => {
       
      
       case DEL_ITEM:
+
           return {
                ...state,
-               cartContent: state.cartContent.filter((item) => item.id !== action.item),
+               cartContent: state.cartContent.filter((item) => item.itemId !== action.item),
                nextItemId: state.nextItemId - 1, 
              };
       case UPDATE_ITEM_IN_CART:
@@ -77,10 +81,10 @@ export const addItemToCart = (item) => {
     
   }
   
-export const deleteItemFromCart = (item) => {
+export const deleteItemFromCart = (id) => {
     return {
       type: DEL_ITEM,
-      item,
+      id,
     }
     
   }

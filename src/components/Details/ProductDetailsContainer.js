@@ -2,16 +2,23 @@ import React, { useEffect,useRef } from 'react';
 import { getProducts } from "../../redux/productsReducer"
 import { addItemToCart , deleteItemFromCart , increaseSummury , decreaseSummury} from '../../redux/cartReducer';
 import { changeProperty} from '../../redux/catalogReducer';
-import { useParams} from 'react-router-dom';
+import { Navigate, useParams} from 'react-router-dom';
 import { compose } from 'redux';
 import Details from './ProductDetails';
 import { connect } from "react-redux"
- 
+
 
 
 const DetailsContainer = (props) => {
 
+  if(!props.isLogin){
+   return(
+    <Navigate to = "/SignIn" />
+   )
+   
     
+    
+    }
     return(
        <Details getNewProperties = {props.getNewProperties} productById = {props.productById} decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
     )
@@ -22,6 +29,7 @@ let mapStateToProps = (state) => {
       product: state.catalog.menProducts,
       productById: state.catalog.product,
       cartContent: state.cart.cartContent,
+      isLogin: state.auth.isLogin,
       
     }
   }

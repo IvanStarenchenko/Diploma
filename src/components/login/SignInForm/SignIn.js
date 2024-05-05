@@ -5,15 +5,16 @@ import { connect } from 'react-redux'
 import { getMyselfAuthData } from '../../../redux/auth-reducer'
 import { Navigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-const SignIn = (props) => {
+const SignIn = ({getMyselfAuthData , isLogin}) => {
     
     const onSubmit = (value) => {  
         console.log(value)
-        props.getMyselfAuthData(value.email , value.password)    
+        getMyselfAuthData(value.email , value.password)    
    }
-   if(props.isLogin){
-    return <Navigate to = "/Profile" />
+   if(isLogin){
+    return <Navigate to = "/Main" />
     }
+    
     return(
         <div className="sign__inner inner-sign">
             <img src={signIn}className="inner-sign__image" alt=""/>

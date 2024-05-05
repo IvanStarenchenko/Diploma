@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom"
 import { Field, reduxForm } from "redux-form"
 import { required , maxLenghtCreator} from "../../../utils/validators"
 import {Input} from '../../Common/FormsControls/FormsControls'
-const SignUnForm = () => {
+const SignUnForm = ({handleSubmit}) => {
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="inner-sign__email sign-up__email">
                 <label for="email">Email</label> 
                 <Field className="inner-sign__input" id="email" type="email" name={"email"} component={Input} validate = {required}/>
@@ -22,6 +22,12 @@ const SignUnForm = () => {
                 </label> 
                 <Field className="inner-sign__input" id="passwordInput" type="password" name={"password"} component={Input} validate = {required}/>
                 <p className="prompt">Use 8 or more characters with a mix of letters, numbers & symbols</p>
+            </div>
+            <div className="inner-sign__confirm sign-up__confirm">
+                <label for="confirm">
+                    <span>Confirm password</span>
+                </label> 
+                <Field className="inner-sign__input" id="passwordConfirm" type="password" name={"confirm"} component={Input} validate = {required}/>
             </div>
             <div className="inner-sign__checkbox">
                 <div className="inner-sign__block">
