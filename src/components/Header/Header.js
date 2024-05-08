@@ -8,11 +8,12 @@ import logo from '../../img/header/Logo.png'
 import { NavLink } from 'react-router-dom'
 import HeaderReduxForm from './HeaderForm'
 import { useEffect, useState } from 'react'
+import { getProductByName } from '../../redux/catalogReducer'
 const Header = (props) => {
     const headerLinkItems = [
         {
             links: ['Shop', 'Men', 'Women', 'Combos', 'Joggers'],
-            path: ['/Main', '/Man', '/Woman', '/Woman', '/Man']
+            path: ['/Main', '/Man', '/Women', '/Women', '/Man']
         }
     ]
     const [cartCount , setCartCount] = useState(0)
@@ -36,6 +37,10 @@ const Header = (props) => {
         }
     }, [props.favoriteContent]);
     const { isLogin } = props;
+    const onSubmit = (formData) => {
+        console.log(formData)
+        props.getProductByName(formData)
+    }
     return (
         <header>
             <div className="header">
@@ -59,7 +64,7 @@ const Header = (props) => {
 
                         <div className="search">
                             <img src={search} alt="" />
-                            <HeaderReduxForm />
+                            <HeaderReduxForm onSubmit = {onSubmit}/>
                         </div>
 
                         <div className="navbar__actions actions-navbar">
@@ -95,4 +100,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {  })(Header)
+export default connect(mapStateToProps, {getProductByName})(Header)

@@ -59,7 +59,7 @@ const DetailsSimilar = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        product: state.catalog.menProducts,
+        product: state.catalog.products,
         favoriteContent: state.favorite.favoriteContent
     }
 }

@@ -1,15 +1,32 @@
+import { useState } from 'react'
 import descr from '../../../img/details/descr.png'
+import CommentsReduxForm from './detailsCommentsForm'
+import { useParams } from 'react-router-dom'
 const DetailsDescription = (props) =>{
+   
+    const [activeDescItem, setDescItem] = useState(true)
+    const [activeCommItem, setCommItem] = useState(false)
+    const [activeQuestItem, setQuestItem] = useState(false)
+    const { id } = useParams();
+    const onSubmit = (formData ) => {
+        console.log('DATA',formData )
+        console.log('DATA', id )
+        props.setComment(id, formData)
+    }
+    console.log(props.comments)
     return(
         <>
             <div className="product-description__inner">
                 <div className="product-description__content content-product">
                     <div className="content-product__navigation navigation-content">
-                        <div id="descriptionBtn" className="navigation-content__description border-bottom">Description</div>
-                        <div id="commentsBtn" className="navigation-content__comments">User comments</div>
-                        <div id="questionBtn" className="navigation-content__questions">Question & Answer</div>
+                        <div id="descriptionBtn" onClick={() => {setDescItem(true) ; setCommItem(false) ; setQuestItem(false) }} className={activeDescItem && 'navigation-content active' || 'navigation-content'}>Description</div>
+                        <div id="commentsBtn" onClick={() => {setDescItem(false) ; setCommItem(true) ; setQuestItem(false) }} className={activeCommItem && 'navigation-content active' || 'navigation-content'}>User comments</div>
+                        <div id="questionBtn" onClick={() => {setDescItem(false) ; setCommItem(false) ; setQuestItem(true) }} className={activeQuestItem && 'navigation-content active' || 'navigation-content'}>Question & Answer</div>
                     </div>
-                    <div className="content-product__main">
+                    {
+                        activeDescItem  
+                        && 
+                        <div className="content-product__main desc">
                         <div className="content-product__description description-inner" id="description">
                             <p className="description-inner__text">{props.productById.description}</p>
                             <div className="description-inner__table table-description">
@@ -39,27 +56,7 @@ const DetailsDescription = (props) =>{
                                 </div>
                             </div>
                         </div>
-                        <div className="content-product__comments comments-inner" id="comments">
-                            <div className="comments-inner__items">
-                                <div className="comments-inner__item item-comments">
-                                    <img className="item-comments__img"></img>
-                                    <div className="item-comments__username">Nick</div>
-                                    <div className="item-comments__comment">Lorem ipsum dolor sit amet consectetur adipisicing.</div>
-                                </div>
-                                <div className="comments-inner__item item-comments">
-                                    <img className="item-comments__img"></img>
-                                    <div className="item-comments__username">Nick</div>
-                                    <div className="item-comments__comment">Lorem ipsum dolor sit amet consectetur adipisicing.</div>
-                                </div>
-                            </div>
-                            <div className="comments-inner__input">
-                                <label >
-                                    <p>Enter comment</p>
-                                    <input type="text"/>
-                                    <button type="submit"> Опубликовать</button>
-                                </label>
-                            </div>
-                        </div>
+                       
                         <div className="content-product__question question-inner" id="question">
                             <div className="wrapper">
                                 <div className="question-inner__menu js-accordion">
@@ -99,7 +96,37 @@ const DetailsDescription = (props) =>{
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    }
+                    {
+                        activeCommItem  
+                        && 
+                        <div className="content-product__comments comments-inner" id="comments">
+                            <div className="comments-inner__items">
+                                <div className="comments-inner__item item-comments">
+                                {props.comments.map((comment, index) => (
+                                    <div key={index}>
+                                        {/* Рендеринг свойства comment из объекта */}
+                                        {comment.comment}
+                                        {/* Дополнительно можно рендерить другие свойства объекта, например, customerID */}
+                                    </div>
+                                ))}
+
+                                </div>
+                            </div>
+                            <div >
+                               <CommentsReduxForm onSubmit = {onSubmit}/>
+                            </div>
+                        </div>
+                    }
+                    {
+                        activeQuestItem  
+                        && 
+                        <div className="content-product__main quest">
+
+                        </div>
+                    }
+                    
                 </div>
                 <div className="product-description__video">
                     <img src={descr} alt=""/>

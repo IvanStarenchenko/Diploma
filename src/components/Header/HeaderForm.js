@@ -4,11 +4,11 @@ import {Input} from '../Common/FormsControls/FormsControls'
 const HeaderForm = ({handleSubmit , error}) => {
 
     return(
-         <form className="form" >
+         <form className="form" onSubmit={handleSubmit}>
             <div className="input-block">
-                <Field className="search__input" placeholder="Search" name={"search"} component={Input}></Field>
+                <Field className="search__input" placeholder="Search" name={"productName"} component={Input}></Field>
             </div>
-     </form>
+        </form>
         )
 }
  

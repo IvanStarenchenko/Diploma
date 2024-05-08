@@ -23,17 +23,17 @@ const Details = (props) => {
             <section className="block product-description">
                 <div className="container">
                     <h3 className="product-description__title title">Product Description</h3>
-                    <DetailsDescription productById = {props.productById}/>
+                    <DetailsDescription getReviews = {props.getReviews} comments = {props.comments} setComment = {props.setComment} productById = {props.productById}/>
                 </div>
             </section>
 
             <section className="block product-similar">
                 <div className="container">
                     <h3 className="product-similar__title title">Similar Products</h3>
-                    <DetailsSimilar productById = {props.productById} product = {props.product} />
+                        <DetailsSimilar productById = {props.productById} product = {props.product} />
                 </div>
             </section>
-        </>
+        </> 
     )
 }
 

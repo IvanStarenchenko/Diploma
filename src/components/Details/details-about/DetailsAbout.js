@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const DetailsAbout = (props) => {
@@ -22,7 +22,6 @@ const DetailsAbout = (props) => {
         } 
     };
     const delFromCart = (selectedItem , id) => {
-        console.log(id)
         if(isItemInCart){
             props.deleteItemFromCart(id)
             props.decreaseSummury(selectedItem.price)
@@ -45,9 +44,9 @@ const DetailsAbout = (props) => {
         <div className="product-detail__about about-product">
             <div className="about-product__navigation">
                 <a href="#">Shop</a>
-                <a href="#">Women</a>
+                <NavLink to={`/${props.productById.category}`}>{props.productById.category}</NavLink>
                 <a href="#">Top</a>
-            </div>
+            </div>  
 
             <h3 className="about-product__title">{props.productById.productName}</h3>
             {/* {product.productName} */}

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import '../account/info/info.scss'
 import Aside from '../Aside'
 import MyInfoFormReduxForm from './MyInfoForm'
-import { changePersonalInfo } from '../../../redux/infoReducer'
-const MyInfo = ({personalInfo , changePersonalInfo}) => {
+import { setNewInfo } from '../../../redux/auth-reducer'
+const MyInfo = ({personalInfo , setNewInfo}) => {
     // const [contactsDetails , setContactsDetails] = useState([
     //     {name: '' , password: '' , country: '' ,
     //     email: '' , streetAdress: '' , city:'',
@@ -13,10 +13,10 @@ const MyInfo = ({personalInfo , changePersonalInfo}) => {
     // ])
     const [editMode , setEditMode] = useState(false)
 
-    const onSubmit = async (formData) => {
-        changePersonalInfo(formData)
-        setEditMode(false) 
-    } 
+        const onSubmit = async (formData) => {
+            setNewInfo(formData)
+            setEditMode(false) 
+        } 
     
     return(
         <> 
@@ -147,7 +147,7 @@ const MyInfo = ({personalInfo , changePersonalInfo}) => {
                         </section>
                     :  <div className='change'><h3 className="info-inner__title content-title">My Info</h3>
                     <p className="info-inner__subtitle content-subtitle">Contact Details</p>
-                    <MyInfoFormReduxForm onSubmit = {onSubmit}/></div>
+                    <MyInfoFormReduxForm personalInfo = {personalInfo} onSubmit = {onSubmit}/></div>
                     }
                    
                     
@@ -164,4 +164,4 @@ const mapStateToProps = (state) => {
         personalInfo: state.auth.userProfile
     }
 }
-export default connect(mapStateToProps , {changePersonalInfo})(MyInfo)
+export default connect(mapStateToProps , {setNewInfo})(MyInfo)

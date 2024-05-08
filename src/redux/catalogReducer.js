@@ -1,18 +1,17 @@
-import { productsAPI } from "../api/Api";
+import { productsAPI , reviewsAPI } from "../api/Api";
 
 
-const SET_MEN_PRODUCTS = 'SET_MEN_PRODUCTS';
-const SET_WOMEN_PRODUCTS = 'SET_WOMEN_PRODUCTS';
+const SET_PRODUCTS = 'SET_PRODUCTS';
 const SET_PROPERTY = 'SET_PROPERTY';
 const SET_PRODUCT = 'SET_PRODUCT';
-const SET_COLOR = 'SET_COLOR';
-const SET_SIZE = 'SET_SIZE';
+const SET_COMMENTS = 'SET_COMMENTS';
+
 
 
 let initialState = {
-  menProducts: [],
+  products: [],
   product: {},  
- 
+  comments: [],
 
 // menProductsRec: [
 //   { id: 1 , itemImageMain: man02 , itemImageSide: man02 , itemImageSide2: man02 , itemImageSide3: man03 , itemName: 'Rec line Pattern Black N...' , itemBrand: 'AS’s  Brand' , itemPrice: 123.00 ,  itemColor: 'black' , itemSize:'XS'},
@@ -47,23 +46,22 @@ let initialState = {
 const catalogReducer = (state = initialState, action) => {
     switch (action.type){
      
-      case SET_MEN_PRODUCTS:
+      case SET_PRODUCTS:
         return  {
           ...state,
-          menProducts: action.menProducts,
+          products: action.products,
            
-        } 
-   
-      case SET_WOMEN_PRODUCTS:
-        return  {
-          ...state,
-          womenProducts: action.womenProducts
         } 
        
       case SET_PRODUCT:
           return{
             ...state,
             product: action.productById,
+        }  
+      case SET_COMMENTS:
+          return{
+            ...state,
+            comments: action.comments,
         }  
 
         case SET_PROPERTY:
@@ -100,21 +98,16 @@ const catalogReducer = (state = initialState, action) => {
   // }
 }
 
-export const setMenProducts = (menProducts) => {
+export const setProducts = (products) => {
   
   return {
-    type: SET_MEN_PRODUCTS,
-    menProducts,
+    type: SET_PRODUCTS,
+    products,
   }
   
 }
 
-export const setWomenProducts = (womenProducts) => {
-  return {
-    type: SET_WOMEN_PRODUCTS,
-    womenProducts
-  }
-}
+
  
   export const changeProperty = (id, newSize , newColor) => {
     return {
@@ -132,12 +125,46 @@ export const setProduct = (productById) => {
   }
 
 }
+export const setComments = (comments) => {
+  return {
+    type: SET_COMMENTS,
+    comments
+  }
+
+}
+
 
 
 export const getProductById = (productId) => async (dispatch) => {
   try {
       let response = await productsAPI.getProductById(productId);
       dispatch(setProduct(response.data));
+      let responseComm = await reviewsAPI.getReviews(productId);
+      if (responseComm && responseComm.data){
+        dispatch(setComments(responseComm.data));
+      }
+  } catch (error) {
+      if (error.response && error.response.status === 401) {
+          console.warn('Authorization error:', error);
+ 
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          
+          
+      }
+      return Promise.resolve(null);
+  }
+};
+export const setComment = (productId , comment) => async (dispatch) => {
+  try {
+      const text = comment.comment
+      let response = await reviewsAPI.postReviews(productId , text);
+      dispatch(setComment(response.data));
+      let responseComm = await reviewsAPI.getReviews(productId);
+      console.log(responseComm.data)
+      if (responseComm && responseComm.data){
+        dispatch(setComments(responseComm.data));
+      }
   } catch (error) {
       if (error.response && error.response.status === 401) {
           console.warn('Authorization error:', error);
@@ -152,11 +179,43 @@ export const getProductById = (productId) => async (dispatch) => {
 };
 
 
-export const getMenProducts = () => async (dispatch) => {
+
+export const getProductByName = (productName , products) => async (dispatch) => {
   try {
-      let response = await productsAPI.getMenProducts();
+      const productData = productName;
+      
+      let response = await productsAPI.getProductByName(productData.productName);
       if (response && response.data) {
-          dispatch(setMenProducts(response.data));
+        const keys = Object.keys(response.data)
+        const lenght = keys.length
+        if(lenght === 0){
+          dispatch(getProducts('men'));
+        }else{
+          dispatch(setProducts(response.data));    
+        }
+      } else {
+          console.error('Unexpected response structure:', response.data);
+      }
+  } catch (error) { 
+      if (error.response) {
+          // Ошибка HTTP-ответа
+          console.error('HTTP Error:', error.response.status);
+          console.error('Response data:', error.response.data);
+          console.error('Response headers:', error.response.headers);
+      } else if (error.request) {
+          // Запрос был отправлен, но ответ не был получен
+          console.error('No response received for the request:', error.request);
+      } else {
+          // Произошла ошибка при настройке запроса
+          console.error('Error setting up request:', error.message);
+      }
+  }
+};
+export const getProducts = (category) => async (dispatch) => {
+  try {
+      let response = await productsAPI.getProducts(category);
+      if (response && response.data) {
+          dispatch(setProducts(response.data));
           console.log('Men products:', response.data);
       } else {
           console.error('Unexpected response structure:', response.data);

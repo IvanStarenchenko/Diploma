@@ -5,7 +5,8 @@ const ADD_POST = 'ADD-POST';
 const SET_PROFILE_IMAGE = 'SET-PROFILE-IMAGE'
 const SET_STATUS = 'SET-STATUS';
 const SET_PROFILE = 'SET-PROFILE';
-const DELETE_POST = 'DELETE-POST'
+const DELETE_POST = 'DELETE-POST';
+const SET_INFO = 'SET_INFO';
 // import store from "./state";
 
 let initialState = {
@@ -22,7 +23,14 @@ const profileReducer = ( state = initialState , action) => {
                 ...state,
                profile: action.profile
             }
-            
+        
+        case SET_INFO:
+            const newState = {
+                ...state,
+                profile: { ...action.data }
+                };
+            localStorage.setItem('personalData', JSON.stringify(newState.profile));
+            return newState;
         case SET_PROFILE_IMAGE: {
             return {
                 ...state,
@@ -43,7 +51,13 @@ export const setUserProfile = (profile) => {
     }
 }
 
-
+export const changePersonalInfo = (data) => {
+    return {
+      type: SET_INFO,
+      data
+    }
+  }
+  
 
 
 // export const getUserProfile = (userId) => {

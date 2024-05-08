@@ -75,7 +75,7 @@ const Wishlist = (props) => {
 const mapStateToProps = (state) =>{
     return {
         favoriteContent: state.favorite.favoriteContent,
-        product: state.catalog.menProducts, 
+        product: state.catalog.products, 
     }
 }
 

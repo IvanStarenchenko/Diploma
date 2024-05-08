@@ -3,8 +3,9 @@ import { profileAPI , loginAPI } from '../api/Api';
 
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_LOGIN_USER_PROFILE = 'SET_LOGIN_USER_PROFILE';
-const accessToken = localStorage.getItem('accessToken');
-const refreshToken = localStorage.getItem('refreshToken');
+const SET_INFO = 'SET_INFO';
+// const accessToken = localStorage.getItem('accessToken');
+// const refreshToken = localStorage.getItem('refreshToken');
 const initialState = {
     isLogin: false,
     email: null,
@@ -21,6 +22,13 @@ const authReducer = (state = initialState, action) => {
                 isLogin: action.isLogin,
                 email: action.email,
             };
+        case SET_INFO:
+            const newState = {
+                ...state,
+                userProfile: { ...action.data }
+                };
+            localStorage.setItem('personalData', JSON.stringify(newState.userProfile));
+            return newState;
         case SET_LOGIN_USER_PROFILE:
             return {
                 ...state,
@@ -44,7 +52,13 @@ export const setLoginUserProfile = (profile) => ({
     profile,
 });
 
-
+export const changePersonalInfo = (data) => {
+    return {
+      type: SET_INFO,
+      data
+    }
+  }
+  
 
 export const setNewAcc = (email, password, confirm) => async (dispatch) => {
     try {
@@ -66,6 +80,36 @@ export const setNewAcc = (email, password, confirm) => async (dispatch) => {
         console.error('Ошибка аутентификации:', error);
     }
 };
+export const setNewInfo = (data) => async (dispatch) => {
+    const fullData = {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        country: data.country,
+        email: data.email,
+        phone:data.phone,
+        streetAddress: data.streetAddress,
+        city: data.city,
+        postalCode: data.postalCode,
+    };
+
+    console.log('Sending data:', fullData);
+
+    try {
+        let response = await profileAPI.setNewInfo(fullData);
+        if (response) {
+            dispatch(changePersonalInfo(fullData));
+        } else {
+            console.error('Unexpected response structure:', response);
+        }
+    } catch (error) {
+        console.error('Ошибка аутентификации:', error);
+        if (error.response) {
+            console.error('Error response data:', error.response.data);
+        }
+    }
+    
+};
+
 
 
 export const getMyselfAuthData = (email, password) => async (dispatch) => {
@@ -95,10 +139,6 @@ export const getMyselfAuthData = (email, password) => async (dispatch) => {
         console.error('Ошибка аутентификации:', error);
     }
 };
-
-
-    
-
 
 
 

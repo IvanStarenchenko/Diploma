@@ -29,12 +29,15 @@ instance.interceptors.request.use(
 );
 
 export const productsAPI = {
-  getMenProducts(){
-    return instance.get(`Products/Sort`);
+  getProducts(category){
+    return instance.get(`Products/getByCategory/${category}`);
   },
 
   getProductById(productId){
        return instance.get(`Products/${productId}`)
+    },  
+  getProductByName(productName){
+       return instance.post(`Products/search?productName=${productName}`  )
     },  
 
 }
@@ -64,6 +67,19 @@ export const profileAPI = {
   getProfile(){
       return instance.get(`Customer/getUserById`)
   },
+  setNewInfo(data){
+      return instance.put(`Customer/updateUserInfo`, {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        country: data.country,
+        email: data.email,
+        phone: data.phone,
+        streetAddress: data.streetAddress,
+        city: data.city,
+        postalCode: data.postalCode,
+      })
+  },
+
 
   setProfileImage(image){
       let formData = new FormData()
@@ -78,3 +94,15 @@ export const profileAPI = {
       return instance.put('profile' , profile)
   }
 }
+export const reviewsAPI = {
+  getReviews(productId){
+      return instance.get(`Reviews/?id= ${productId}`)
+  },
+  postReviews(productId , comment){
+      return instance.post(`Reviews`, {productId , comment} )
+  },
+  deleteReviews(productId){
+      return instance.delete(`Reviews/?id${productId}`)
+  },
+
+} 

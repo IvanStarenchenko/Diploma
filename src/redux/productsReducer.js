@@ -42,7 +42,8 @@ export const getProducts = (productId) => async (dispatch) => {
         console.error('Ошибка настройки запроса:', error.message);
       }
     }
-  };
+};
+
   
 
 export default productsReducer;

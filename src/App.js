@@ -38,7 +38,7 @@ class App extends React.Component {
             <Routes>
               <Route path="/" element={<Navigate to="/Main" />} />
               <Route path="/Main" element={<Hero />} />
-              <Route path="/Woman" element={<WomansProducts />} />
+              <Route path="/Women" element={<WomansProducts />} />
               <Route path="/Man" element={<MansProducts />} />
               {/* //////////////////////////////////////////////// */}
               <Route path="/Description/:id" element={<DetailsContainer />} />

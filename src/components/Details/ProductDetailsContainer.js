@@ -1,7 +1,7 @@
 import React, { useEffect,useRef } from 'react';
 import { getProducts } from "../../redux/productsReducer"
 import { addItemToCart , deleteItemFromCart , increaseSummury , decreaseSummury} from '../../redux/cartReducer';
-import { changeProperty} from '../../redux/catalogReducer';
+import { changeProperty , setComment} from '../../redux/catalogReducer';
 import { Navigate, useParams} from 'react-router-dom';
 import { compose } from 'redux';
 import Details from './ProductDetails';
@@ -20,14 +20,15 @@ const DetailsContainer = (props) => {
     
     }
     return(
-       <Details getNewProperties = {props.getNewProperties} productById = {props.productById} decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
+       <Details setComment = {props.setComment} comments = {props.comments} getNewProperties = {props.getNewProperties} productById = {props.productById} decreaseSummury = {props.decreaseSummury} increaseSummury = {props.increaseSummury} changeProperty = {props.changeProperty} deleteItemFromCart = {props.deleteItemFromCart} product = {props.product} addItemToCart = {props.addItemToCart} cartContent = {props.cartContent}/>
     )
 }
 
 let mapStateToProps = (state) => {
     return{
-      product: state.catalog.menProducts,
+      product: state.catalog.products,
       productById: state.catalog.product,
+      comments: state.catalog.comments,
       cartContent: state.cart.cartContent,
       isLogin: state.auth.isLogin,
       
@@ -35,7 +36,7 @@ let mapStateToProps = (state) => {
   }
 
 export default compose(
-    connect(mapStateToProps , {getProducts , addItemToCart , deleteItemFromCart ,changeProperty , increaseSummury , decreaseSummury}),
+    connect(mapStateToProps , {getProducts , setComment , addItemToCart , deleteItemFromCart ,changeProperty , increaseSummury , decreaseSummury}),
   )(DetailsContainer);  
 
 

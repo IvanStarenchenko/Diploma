@@ -1,18 +1,21 @@
 import '../common/Products.scss'
 import '../../Hero/categories/Categories.scss'
-import { getMenProducts } from '../../../redux/catalogReducer'
+import { getProducts } from '../../../redux/catalogReducer'
 
 import Filter from '../common/Filter'
 import Online from '../common/Online'
 import BestPrices from '../common/BestPrices'
 import CatalogWomen from '../CatalogNew'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { connect } from 'react-redux'
 
 const WomansProducts = (props) => {
     const [isSwitched , setSwitch] = useState(false)
     const [isNewActive , setActiveNew] = useState(true)
     const [isRecActive , setActiveRec] = useState(false)
+    useEffect(() => {
+        props.getProducts('women')
+    }, {})
     return (
         <div className="container ">
             <section className="block catalog">
@@ -29,7 +32,7 @@ const WomansProducts = (props) => {
                         <div className="catalog-products__controls">
                         <button onClick={() => {setSwitch(false); setActiveRec(false); setActiveNew(true)} } className={isNewActive ? "catalog-products__new active" : "catalog-products__new" }  id="newBtn">New</button>
 
-<button onClick= {() => {setSwitch(true); setActiveRec(true); setActiveNew(false)}}className={isRecActive ? "catalog-products__recomended active" : "catalog-products__recomended" } id="recommendedBtn">Recommended</button>
+                        <button onClick= {() => {setSwitch(true); setActiveRec(true); setActiveNew(false)}}className={isRecActive ? "catalog-products__recomended active" : "catalog-products__recomended" } id="recommendedBtn">Recommended</button>
                         </div>
                     </div>
 
@@ -52,11 +55,11 @@ const WomansProducts = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        products: state.catalog.womenProducts,
+        products: state.catalog.products,
         pageSize: state.catalog.pageSize,
         currentPage: state.catalog.currentPage,
         portionSize: state.catalog.portionSize,
     }
 }
 
-export default connect(mapStateToProps, { getMenProducts })(WomansProducts)
+export default connect(mapStateToProps, { getProducts })(WomansProducts)

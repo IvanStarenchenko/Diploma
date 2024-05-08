@@ -2,7 +2,7 @@ const SET_INFO = 'SET_INFO';
 let initialState = {
 
   personalData: JSON.parse(localStorage.getItem('personalData')) ||
-   {name: '' , password: '' , country: '' ,
+   {name: '' ,  country: '' ,
     email: '' , streetAdress: '' , city:'',
     phone: '' , postalCode: '' , inctruction: '' }
    

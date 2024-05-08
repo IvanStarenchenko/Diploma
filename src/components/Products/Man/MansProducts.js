@@ -2,7 +2,7 @@ import '../common/Products.scss'
 import '../../Hero/categories/Categories.scss'
 
 import Paginator from '../../Common/Paginator'
-import { getMenProducts } from '../../../redux/catalogReducer'
+import { getProducts } from '../../../redux/catalogReducer'
 
 import Filter from '../common/Filter'
 import Online from '../common/Online'
@@ -19,7 +19,7 @@ const MansProducts = (props) => {
 
 
     useEffect(() => {
-        props.getMenProducts('Men')
+        props.getProducts('man')
     }, {})
 
     // const onPageChanged = (currentPage) => {
@@ -72,7 +72,7 @@ const MansProducts = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        products: state.catalog.menProducts,
+        products: state.catalog.products,
         productsRec: state.catalog.menProductsRec,
         pageSize: state.catalog.pageSize,
         currentPage: state.catalog.currentPage,
@@ -80,4 +80,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getMenProducts })(MansProducts)
+export default connect(mapStateToProps, { getProducts })(MansProducts)
