@@ -5,3 +5,5 @@ To install Node Modules run npm install --force
 
 
 To run project npm start
+
+This is not full project
